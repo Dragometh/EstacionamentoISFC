@@ -23,13 +23,15 @@ public class ControllerCadUser implements ActionListener{
 		super();
 		this.tela = tela;
 		tela.setVisible(true);
+		tela.pack();
+		tela.setTitle("Cadastro de Usuarios");
 		
-		//Adição de ActionListeners
+		//Adiï¿½ï¿½o de ActionListeners
 		tela.getBtnCancelar().addActionListener(this);
 		tela.getBtnRegistrar().addActionListener(this);
 		tela.getBtnLimpar().addActionListener(this);
 		
-		// Logica para formatação de campos numéricos
+		// Logica para formataï¿½ï¿½o de campos numï¿½ricos
 		MaskFormatter formatadorCpf;
 		MaskFormatter formatadorRg;
 		MaskFormatter formatadorFone;
@@ -78,7 +80,7 @@ public class ControllerCadUser implements ActionListener{
 			ex.printStackTrace();
 		}
 		
-		// Detecção de campos em branco
+		// Detecï¿½ï¿½o de campos em branco
 		switch(0) {
 			case 0:
 				if (!tela.getUserField().getText().isEmpty()) {
@@ -163,16 +165,16 @@ public class ControllerCadUser implements ActionListener{
 				Service.ServiceUsers.Create(u);
 				Limpar();
 			} else if (!usuariosValidos) {
-				JOptionPane.showMessageDialog(null, "Nome de usuario já existe!");
+				JOptionPane.showMessageDialog(null, "Nome de usuario jï¿½ existe!");
 				tela.getPasswordField().setText("");
 				tela.getConfirmPassField().setText("");
 			} else if (!senhasValidas) {
-				JOptionPane.showMessageDialog(null, "As senhas não conferem!");
+				JOptionPane.showMessageDialog(null, "As senhas nï¿½o conferem!");
 				tela.getPasswordField().setText("");
 				tela.getConfirmPassField().setText("");
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Há campos em branco!");
+			JOptionPane.showMessageDialog(null, "Hï¿½ campos em branco!");
 		}
 	}
 	

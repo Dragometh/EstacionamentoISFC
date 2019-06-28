@@ -20,6 +20,7 @@ public class ControllerCadMarcas implements ActionListener{
 		super();
 		this.tela = tela;
 		tela.setVisible(true);
+		tela.setTitle("Cadastro de Modelos, Marcas e Versoes");
 		
 		tela.getBtnMarcasRegistrar().addActionListener(this);
 		tela.getBtnModelosRegistrar().addActionListener(this);
@@ -51,11 +52,11 @@ public class ControllerCadMarcas implements ActionListener{
 				if (!marcaNomeInvalido) {
 					Service.ServiceMarcas.Create(marca);
 				} else {
-					JOptionPane.showMessageDialog(null, "Marca já está registrada!");
+					JOptionPane.showMessageDialog(null, "Marca jï¿½ estï¿½ registrada!");
 				}
 				
 			} else {
-				JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
+				JOptionPane.showMessageDialog(null, "Hï¿½ campos em branco/nï¿½o selecionados!");
 			}
 			
 			
@@ -74,6 +75,7 @@ public class ControllerCadMarcas implements ActionListener{
 				for (Modelo m: Service.ServiceModelos.Retrieve()) {
 					if (m.getNome().equals(modelo.getNome()) && m.getFabricante().equals(modelo.getFabricante())) {
 						modeloNomeInvalido = true;
+						break;
 					}
 				}
 				
@@ -88,14 +90,15 @@ public class ControllerCadMarcas implements ActionListener{
 						if (m.getFabricante().equals(fabric.getFabricante())) {
 							System.out.println("Marca m: " + m.getFabricante() + "\nMarca fabric: " + fabric.getFabricante());
 							Service.ServiceMarcas.Update(tela.getModelosMarcaCBox().getSelectedIndex() - 1, fabric); // -1 devido ao index = 0("Selecionar X") adicionado aos ComboBoxes.
+							break;
 						}
 					}
 					Service.ServiceModelos.Create(modelo);
 				} else {
-					JOptionPane.showMessageDialog(null, "Modelo já está registrado dentro dessa marca!");
+					JOptionPane.showMessageDialog(null, "Modelo jï¿½ estï¿½ registrado dentro dessa marca!");
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
+				JOptionPane.showMessageDialog(null, "Hï¿½ campos em branco/nï¿½o selecionados!");
 			}
 			
 			break;
@@ -114,20 +117,41 @@ public class ControllerCadMarcas implements ActionListener{
 				versao.setCategoria(Service.ServiceCategorias.Retrieve((String)tela.getVersoesCarroceriaCBox().getSelectedItem(),(String) tela.getVersoesClasseCBox().getSelectedItem()));
 				
 				for (Versao v: Service.ServiceVersoes.Retrieve()) {
-					if (v.getNome() == versao.getNome() && v.getModelo() == versao.getModelo()) {
+					if (v.getNome().equals(versao.getNome()) && v.getModelo().equals(versao.getModelo())) {
 						versaoNomeInvalido = true;
+						break;
 					}
 				}
 				
 				if (!versaoNomeInvalido) {
+					Modelo modelo = (Modelo) tela.getVersoesModeloCBox().getSelectedItem();
+					modelo.getListaVersoes().add(versao);
+					for (Modelo m : Service.ServiceModelos.Retrieve()) {
+						if (m.getNome().equals(modelo.getNome())) {
+							System.out.println("Modelo m: " + m.getNome() + "\nModelo modelo: " + modelo.getNome());
+							Service.ServiceModelos.Update(tela.getVersoesModeloCBox().getSelectedIndex() - 1, modelo); // -1 devido ao index = 0("Selecionar X") adicionado aos ComboBoxes.
+							break;
+						}
+					}
+					
+					for (Marca ma: Service.ServiceMarcas.Retrieve()) {
+						for (Modelo mo: ma.getListaModelos()) {
+							System.out.println(ma.getListaModelos().toString());
+							if (mo.getNome().equals(modelo.getNome())) {
+								ma.getListaModelos().set(ma.getListaModelos().indexOf(mo), modelo);
+								Service.ServiceMarcas.Update(tela.getVersoesMarcaCBox().getSelectedIndex() - 1, ma);
+								System.out.println(ma.getListaModelos().toString());
+								break;
+							}
+						}
+					}
 					Service.ServiceVersoes.Create(versao);
-					versao.getModelo().getListaVersoes().add(versao);
 				} else {
-					JOptionPane.showMessageDialog(null, "Essa versao já está registrada dentro desse modelo!");
+					JOptionPane.showMessageDialog(null, "Essa versao jï¿½ estï¿½ registrada dentro desse modelo!");
 				} 
 				break;
 			} else {
-				JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
+				JOptionPane.showMessageDialog(null, "Hï¿½ campos em branco/nï¿½o selecionados!");
 			}
 		}
 	}

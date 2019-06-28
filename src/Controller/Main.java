@@ -28,7 +28,7 @@ public class Main {
 		Service.ServiceCategorias.RetrieveClassList().add("Compacto");
 		Service.ServiceCategorias.RetrieveClassList().add("Medio");
 		Service.ServiceCategorias.RetrieveClassList().add("Grande");
-    	Service.ServiceCategorias.Create();
+    	Service.ServiceCategorias.CreateFromLists();
 		
     	m.setFabricante("Volkswagen");
     	m.setListaModelos(new java.util.ArrayList<Model.Modelo>());
@@ -54,7 +54,7 @@ public class Main {
 		Service.ServiceUsers.Create(new Model.UsrSys("admin", "admin"));
 		**/
     	
-    	//Inicializando listas de Marca, Modelo, Versão, Categorias e Usuarios
+    	//Inicializando listas de Marca, Modelo, Versï¿½o, Categorias e Usuarios
     	Service.ServiceCategorias.Retrieve();
     	Service.ServiceMarcas.Retrieve();
     	Service.ServiceModelos.Retrieve();

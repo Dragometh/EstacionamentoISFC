@@ -14,12 +14,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class TelaLogin extends JFrame {
 	// Atributos
 	private JPanel contentPane;
 	private JButton btnConfirm;
-	private JLabel lblLogin;
 	private JTextField userField;
 	private JPasswordField passwordField;
 	
@@ -27,37 +29,58 @@ public class TelaLogin extends JFrame {
 	public TelaLogin() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 200, 274);
+		setBounds(100, 100, 200, 160);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		btnConfirm = new JButton("Confirmar");
-		btnConfirm.setBounds(95, 196, 89, 23);
-		contentPane.add(btnConfirm);
-		
-		lblLogin = new JLabel("Login");
-		lblLogin.setFont(new Font("Consolas", Font.PLAIN, 26));
-		lblLogin.setBounds(56, 11, 78, 49);
-		contentPane.add(lblLogin);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[]{57, 89, 0};
+		gbl_contentPane.rowHeights = new int[]{14, 20, 14, 20, 23, 0};
+		gbl_contentPane.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		contentPane.setLayout(gbl_contentPane);
 		
 		JLabel lblUser = new JLabel("Usu\u00E1rio:");
-		lblUser.setBounds(10, 71, 57, 14);
-		contentPane.add(lblUser);
+		GridBagConstraints gbc_lblUser = new GridBagConstraints();
+		gbc_lblUser.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblUser.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUser.gridx = 0;
+		gbc_lblUser.gridy = 0;
+		contentPane.add(lblUser, gbc_lblUser);
 		
 		userField = new JTextField();
-		userField.setBounds(10, 96, 174, 20);
-		contentPane.add(userField);
+		GridBagConstraints gbc_userField = new GridBagConstraints();
+		gbc_userField.fill = GridBagConstraints.BOTH;
+		gbc_userField.insets = new Insets(0, 0, 5, 0);
+		gbc_userField.gridwidth = 2;
+		gbc_userField.gridx = 0;
+		gbc_userField.gridy = 1;
+		contentPane.add(userField, gbc_userField);
 		userField.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(10, 127, 57, 14);
-		contentPane.add(lblSenha);
+		GridBagConstraints gbc_lblSenha = new GridBagConstraints();
+		gbc_lblSenha.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblSenha.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSenha.gridx = 0;
+		gbc_lblSenha.gridy = 2;
+		contentPane.add(lblSenha, gbc_lblSenha);
 		
 		passwordField = new JPasswordField();
-		passwordField.setBounds(10, 152, 174, 20);
-		contentPane.add(passwordField);
+		GridBagConstraints gbc_passwordField = new GridBagConstraints();
+		gbc_passwordField.fill = GridBagConstraints.BOTH;
+		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
+		gbc_passwordField.gridwidth = 2;
+		gbc_passwordField.gridx = 0;
+		gbc_passwordField.gridy = 3;
+		contentPane.add(passwordField, gbc_passwordField);
+		
+		btnConfirm = new JButton("Confirmar");
+		GridBagConstraints gbc_btnConfirm = new GridBagConstraints();
+		gbc_btnConfirm.fill = GridBagConstraints.BOTH;
+		gbc_btnConfirm.gridx = 1;
+		gbc_btnConfirm.gridy = 4;
+		contentPane.add(btnConfirm, gbc_btnConfirm);
 		
 		Controller.ControllerLogin cLogin = new Controller.ControllerLogin(this);
 	}

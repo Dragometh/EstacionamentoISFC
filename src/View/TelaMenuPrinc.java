@@ -52,9 +52,6 @@ public class TelaMenuPrinc extends JFrame {
 		JMenuItem mntmRegistrarProprietarios = new JMenuItem("Propriet\u00E1rios");
 		mnRegistrar.add(mntmRegistrarProprietarios);
 		
-		JMenuItem mntmRegistrarVeiculos = new JMenuItem("Ve\u00EDculos");
-		mnRegistrar.add(mntmRegistrarVeiculos);
-		
 		JMenuItem mntmRegistrarMarcas = new JMenuItem("Marcas e Modelos");
 		mnRegistrar.add(mntmRegistrarMarcas);
 		

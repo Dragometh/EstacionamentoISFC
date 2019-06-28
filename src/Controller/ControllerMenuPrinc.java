@@ -8,9 +8,12 @@ public class ControllerMenuPrinc implements ActionListener {
 	
 	public ControllerMenuPrinc(View.TelaMenuPrinc tela) {
 		this.tela = tela;
-		tela.setVisible(true);
 		
-		//Adição de ActionListeners
+		tela.pack();
+		tela.setVisible(true);
+		this.tela.setTitle("Menu principal");
+		
+		//Adicao de ActionListeners
 		for(int i = 0; i < tela.getJMenuBar().getMenuCount(); i++) {
 			for (int j = 0; j < tela.getJMenuBar().getMenu(i).getItemCount(); j++) {
 				tela.getJMenuBar().getMenu(i).getItem(j).addActionListener(this);
@@ -30,9 +33,8 @@ public class ControllerMenuPrinc implements ActionListener {
 		 * getMenu(i) -> i = 0 = mnDados; i = 1 = mnRegistrar
 		 * getMenu(x).getItem(i) -> para qualquer x;
 		 * -i = 0 = mntn(Ver/Registrar)Proprietarios
-		 * -i = 1 = mntn(Ver/Registrar)Veiculos
-		 * -i = 2 = mntn(Ver/Registrar)Marcas
-		 * -i = 3 = mntn(Ver/Registrar)Usuarios
+		 * -i = 1 = mntn(Ver/Registrar)Marcas
+		 * -i = 2 = mntn(Ver/Registrar)Usuarios
 		 */
 		
 		
@@ -40,18 +42,14 @@ public class ControllerMenuPrinc implements ActionListener {
 		if (e.getSource() == menuBarHandler(0,0)) { 
 			//mntnVerProprietarios
 		} else if (e.getSource() == menuBarHandler(0,1)) {
-			//mntnVerVeiculos
-		} else if (e.getSource() == menuBarHandler(0,2)) {
 			//mntnVerMarcas
-		} else if (e.getSource() == menuBarHandler(0,3)) {
+		} else if (e.getSource() == menuBarHandler(0,2)) {
 			//mntnVerUsuarios
 		} else if (e.getSource() == menuBarHandler(1,0)) {
-			//mntnRegistrarProprietarios
+			View.TelaCadProprietario cadPropr = new View.TelaCadProprietario();
 		} else if (e.getSource() == menuBarHandler(1,1)) {
-			//mntnRegistrarVeiculos
-		} else if (e.getSource() == menuBarHandler(1,2)) {
 			View.TelaCadMarcas cadMarca = new View.TelaCadMarcas();
-		} else if (e.getSource() == menuBarHandler(1,3)) {
+		} else if (e.getSource() == menuBarHandler(1,2)) {
 			View.TelaCadUser cadUser = new View.TelaCadUser();
 		} else if (e.getSource() == tela.getBtnRegistrarEntrada()) {
 			//Registro de Entradas

@@ -18,6 +18,9 @@ import Controller.ControllerCadUser;
 
 import javax.swing.JPasswordField;
 import javax.swing.JFormattedTextField;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class TelaCadUser extends JFrame {
 	private JPanel contentPane;
@@ -41,99 +44,192 @@ public class TelaCadUser extends JFrame {
 		setBounds(100, 100, 460, 390);
 		
 		contentPane = new JPanel();
-		contentPane.setLayout(null);
 		setContentPane(contentPane);
+		GridBagLayout gbl_contentPane = new GridBagLayout();
+		gbl_contentPane.columnWidths = new int[]{83, 53, 39, 58, 15, 90, 75, 0};
+		gbl_contentPane.rowHeights = new int[]{31, 14, 20, 14, 20, 14, 20, 14, 20, 43, 23, 0};
+		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		contentPane.setLayout(gbl_contentPane);
 		
-		btnCancelar = new JButton("Cancelar");
-		btnCancelar.setBounds(371, 327, 75, 23);
-		contentPane.add(btnCancelar);
+		JLabel lblSistema = new JLabel("INFORMAÇÕES CADASTRAIS");
+		lblSistema.setFont(new Font("Tahoma", Font.BOLD, 12));
+		GridBagConstraints gbc_lblSistema = new GridBagConstraints();
+		gbc_lblSistema.anchor = GridBagConstraints.SOUTH;
+		gbc_lblSistema.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblSistema.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSistema.gridwidth = 2;
+		gbc_lblSistema.gridx = 0;
+		gbc_lblSistema.gridy = 0;
+		contentPane.add(lblSistema, gbc_lblSistema);
 		
-		btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setBounds(10, 327, 83, 23);
-		contentPane.add(btnRegistrar);
-		
-		JLabel lblRegistro = new JLabel("Registro");
-		lblRegistro.setFont(new Font("Consolas", Font.PLAIN, 26));
-		lblRegistro.setBounds(169, 0, 112, 49);
-		contentPane.add(lblRegistro);
+		JLabel lblInformaesPessoais = new JLabel("INFORMAÇÕES PESSOAIS");
+		lblInformaesPessoais.setFont(new Font("Tahoma", Font.BOLD, 12));
+		GridBagConstraints gbc_lblInformaesPessoais = new GridBagConstraints();
+		gbc_lblInformaesPessoais.anchor = GridBagConstraints.SOUTHWEST;
+		gbc_lblInformaesPessoais.insets = new Insets(0, 0, 5, 0);
+		gbc_lblInformaesPessoais.gridwidth = 3;
+		gbc_lblInformaesPessoais.gridx = 4;
+		gbc_lblInformaesPessoais.gridy = 0;
+		contentPane.add(lblInformaesPessoais, gbc_lblInformaesPessoais);
 		
 		JLabel lblUsuario = new JLabel("Nome de Usu\u00E1rio:");
-		lblUsuario.setBounds(10, 71, 180, 14);
-		contentPane.add(lblUsuario);
-		
-		userField = new JTextField();
-		userField.setBounds(10, 96, 180, 20);
-		contentPane.add(userField);
-		userField.setColumns(10);
-		
-		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(10, 127, 180, 14);
-		contentPane.add(lblSenha);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(10, 152, 180, 20);
-		contentPane.add(passwordField);
-		
-		JLabel lblConfirmarSenha = new JLabel("Confirmar senha:");
-		lblConfirmarSenha.setBounds(10, 183, 180, 14);
-		contentPane.add(lblConfirmarSenha);
-		
-		confirmPassField = new JPasswordField();
-		confirmPassField.setBounds(10, 208, 180, 20);
-		contentPane.add(confirmPassField);
+		GridBagConstraints gbc_lblUsuario = new GridBagConstraints();
+		gbc_lblUsuario.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblUsuario.insets = new Insets(0, 0, 5, 5);
+		gbc_lblUsuario.gridwidth = 3;
+		gbc_lblUsuario.gridx = 0;
+		gbc_lblUsuario.gridy = 1;
+		contentPane.add(lblUsuario, gbc_lblUsuario);
 		
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(266, 71, 180, 14);
-		contentPane.add(lblNome);
+		GridBagConstraints gbc_lblNome = new GridBagConstraints();
+		gbc_lblNome.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblNome.insets = new Insets(0, 0, 5, 0);
+		gbc_lblNome.gridwidth = 3;
+		gbc_lblNome.gridx = 4;
+		gbc_lblNome.gridy = 1;
+		contentPane.add(lblNome, gbc_lblNome);
+		
+		userField = new JTextField();
+		GridBagConstraints gbc_userField = new GridBagConstraints();
+		gbc_userField.fill = GridBagConstraints.BOTH;
+		gbc_userField.insets = new Insets(0, 0, 5, 5);
+		gbc_userField.gridwidth = 3;
+		gbc_userField.gridx = 0;
+		gbc_userField.gridy = 2;
+		contentPane.add(userField, gbc_userField);
+		userField.setColumns(10);
 		
 		nomeField = new JTextField();
-		nomeField.setBounds(266, 96, 180, 20);
-		contentPane.add(nomeField);
+		GridBagConstraints gbc_nomeField = new GridBagConstraints();
+		gbc_nomeField.fill = GridBagConstraints.BOTH;
+		gbc_nomeField.insets = new Insets(0, 0, 5, 0);
+		gbc_nomeField.gridwidth = 3;
+		gbc_nomeField.gridx = 4;
+		gbc_nomeField.gridy = 2;
+		contentPane.add(nomeField, gbc_nomeField);
 		nomeField.setColumns(10);
 		
+		JLabel lblSenha = new JLabel("Senha:");
+		GridBagConstraints gbc_lblSenha = new GridBagConstraints();
+		gbc_lblSenha.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblSenha.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSenha.gridwidth = 3;
+		gbc_lblSenha.gridx = 0;
+		gbc_lblSenha.gridy = 3;
+		contentPane.add(lblSenha, gbc_lblSenha);
+		
 		JLabel lblCpf = new JLabel("CPF:");
-		lblCpf.setBounds(266, 127, 180, 14);
-		contentPane.add(lblCpf);
+		GridBagConstraints gbc_lblCpf = new GridBagConstraints();
+		gbc_lblCpf.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblCpf.insets = new Insets(0, 0, 5, 0);
+		gbc_lblCpf.gridwidth = 3;
+		gbc_lblCpf.gridx = 4;
+		gbc_lblCpf.gridy = 3;
+		contentPane.add(lblCpf, gbc_lblCpf);
 		
-		JLabel lblRG = new JLabel("RG:");
-		lblRG.setBounds(266, 183, 180, 14);
-		contentPane.add(lblRG);
-		
-		JLabel lblSistema = new JLabel("Informa\u00E7\u00F5es cadastrais");
-		lblSistema.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSistema.setBounds(10, 46, 146, 14);
-		contentPane.add(lblSistema);
-		
-		JLabel label = new JLabel("Informa\u00E7\u00F5es pessoais");
-		label.setFont(new Font("Tahoma", Font.BOLD, 12));
-		label.setBounds(266, 46, 146, 14);
-		contentPane.add(label);
-		
-		JLabel lblFone = new JLabel("Telefone:");
-		lblFone.setBounds(266, 239, 180, 14);
-		contentPane.add(lblFone);
-		
-		btnLimpar = new JButton("Limpar Campos");
-		btnLimpar.setBounds(103, 327, 105, 23);
-		contentPane.add(btnLimpar);
+		passwordField = new JPasswordField();
+		GridBagConstraints gbc_passwordField = new GridBagConstraints();
+		gbc_passwordField.fill = GridBagConstraints.BOTH;
+		gbc_passwordField.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordField.gridwidth = 3;
+		gbc_passwordField.gridx = 0;
+		gbc_passwordField.gridy = 4;
+		contentPane.add(passwordField, gbc_passwordField);
 		
 		cpfField = new JFormattedTextField();
 		cpfField.setFocusLostBehavior(JFormattedTextField.COMMIT);
-		cpfField.setBounds(266, 152, 178, 20);
 		cpfField.setLocale(new Locale("pt", "BR"));
-		contentPane.add(cpfField);
-
-		rgField = new JFormattedTextField();
-		rgField.setFocusLostBehavior(JFormattedTextField.COMMIT);
-		rgField.setBounds(266, 208, 178, 20);
-		rgField.setLocale(new Locale("pt", "BR"));
-		contentPane.add(rgField);
+		GridBagConstraints gbc_cpfField = new GridBagConstraints();
+		gbc_cpfField.fill = GridBagConstraints.BOTH;
+		gbc_cpfField.insets = new Insets(0, 0, 5, 0);
+		gbc_cpfField.gridwidth = 3;
+		gbc_cpfField.gridx = 4;
+		gbc_cpfField.gridy = 4;
+		contentPane.add(cpfField, gbc_cpfField);
+		
+		JLabel lblConfirmarSenha = new JLabel("Confirmar senha:");
+		GridBagConstraints gbc_lblConfirmarSenha = new GridBagConstraints();
+		gbc_lblConfirmarSenha.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblConfirmarSenha.insets = new Insets(0, 0, 5, 5);
+		gbc_lblConfirmarSenha.gridwidth = 3;
+		gbc_lblConfirmarSenha.gridx = 0;
+		gbc_lblConfirmarSenha.gridy = 5;
+		contentPane.add(lblConfirmarSenha, gbc_lblConfirmarSenha);
+		
+		JLabel lblRG = new JLabel("RG:");
+		GridBagConstraints gbc_lblRG = new GridBagConstraints();
+		gbc_lblRG.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblRG.insets = new Insets(0, 0, 5, 0);
+		gbc_lblRG.gridwidth = 3;
+		gbc_lblRG.gridx = 4;
+		gbc_lblRG.gridy = 5;
+		contentPane.add(lblRG, gbc_lblRG);
+		
+		confirmPassField = new JPasswordField();
+		GridBagConstraints gbc_confirmPassField = new GridBagConstraints();
+		gbc_confirmPassField.fill = GridBagConstraints.BOTH;
+		gbc_confirmPassField.insets = new Insets(0, 0, 5, 5);
+		gbc_confirmPassField.gridwidth = 3;
+		gbc_confirmPassField.gridx = 0;
+		gbc_confirmPassField.gridy = 6;
+		contentPane.add(confirmPassField, gbc_confirmPassField);
+		
+				rgField = new JFormattedTextField();
+				rgField.setFocusLostBehavior(JFormattedTextField.COMMIT);
+				rgField.setLocale(new Locale("pt", "BR"));
+				GridBagConstraints gbc_rgField = new GridBagConstraints();
+				gbc_rgField.fill = GridBagConstraints.BOTH;
+				gbc_rgField.insets = new Insets(0, 0, 5, 0);
+				gbc_rgField.gridwidth = 3;
+				gbc_rgField.gridx = 4;
+				gbc_rgField.gridy = 6;
+				contentPane.add(rgField, gbc_rgField);
+		
+		JLabel lblFone = new JLabel("Telefone:");
+		GridBagConstraints gbc_lblFone = new GridBagConstraints();
+		gbc_lblFone.fill = GridBagConstraints.HORIZONTAL;
+		gbc_lblFone.insets = new Insets(0, 0, 5, 0);
+		gbc_lblFone.gridwidth = 3;
+		gbc_lblFone.gridx = 4;
+		gbc_lblFone.gridy = 7;
+		contentPane.add(lblFone, gbc_lblFone);
 		
 		foneField = new JFormattedTextField();
 		foneField.setFocusLostBehavior(JFormattedTextField.COMMIT);
-		foneField.setBounds(266, 264, 178, 20);
 		foneField.setLocale(new Locale("pt", "BR"));
-		contentPane.add(foneField);
+		GridBagConstraints gbc_foneField = new GridBagConstraints();
+		gbc_foneField.fill = GridBagConstraints.BOTH;
+		gbc_foneField.insets = new Insets(0, 0, 5, 0);
+		gbc_foneField.gridwidth = 3;
+		gbc_foneField.gridx = 4;
+		gbc_foneField.gridy = 8;
+		contentPane.add(foneField, gbc_foneField);
+		
+		btnRegistrar = new JButton("Registrar");
+		GridBagConstraints gbc_btnRegistrar = new GridBagConstraints();
+		gbc_btnRegistrar.fill = GridBagConstraints.BOTH;
+		gbc_btnRegistrar.insets = new Insets(0, 0, 0, 5);
+		gbc_btnRegistrar.gridx = 0;
+		gbc_btnRegistrar.gridy = 10;
+		contentPane.add(btnRegistrar, gbc_btnRegistrar);
+		
+		btnLimpar = new JButton("Limpar Campos");
+		GridBagConstraints gbc_btnLimpar = new GridBagConstraints();
+		gbc_btnLimpar.fill = GridBagConstraints.BOTH;
+		gbc_btnLimpar.insets = new Insets(0, 0, 0, 5);
+		gbc_btnLimpar.gridwidth = 2;
+		gbc_btnLimpar.gridx = 1;
+		gbc_btnLimpar.gridy = 10;
+		contentPane.add(btnLimpar, gbc_btnLimpar);
+		
+		btnCancelar = new JButton("Cancelar");
+		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
+		gbc_btnCancelar.fill = GridBagConstraints.BOTH;
+		gbc_btnCancelar.gridx = 6;
+		gbc_btnCancelar.gridy = 10;
+		contentPane.add(btnCancelar, gbc_btnCancelar);
 		
 		Controller.ControllerCadUser cCad = new Controller.ControllerCadUser(this);
 

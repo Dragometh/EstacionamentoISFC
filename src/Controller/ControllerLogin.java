@@ -17,6 +17,9 @@ public class ControllerLogin implements ActionListener {
 	public ControllerLogin(TelaLogin telaLogin) {
 		super();
 		this.tela = telaLogin;
+		this.tela.setTitle("Login");
+		
+		tela.pack();
 		telaLogin.setVisible(true);
 		telaLogin.getBtnConfirm().addActionListener(this);
 		telaLogin.getPasswordField().addActionListener(this);
