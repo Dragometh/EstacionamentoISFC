@@ -7,14 +7,14 @@ public class Versao implements java.io.Serializable{
     private Categoria categoria;
 
     // Construtores
+    public Versao() {super();}
+    
     public Versao(String nome, Marca fabricante, Modelo modelo, Categoria categoria) {
     	this.nome = nome;
         this.fabricante = fabricante;
         this.modelo = modelo;
         this.categoria = categoria;
     }
-    
-    public Versao() {}
 
     // Getters & Setters
     public String getNome() {

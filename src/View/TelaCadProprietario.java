@@ -1,8 +1,5 @@
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,7 +12,6 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JRadioButton;
 import java.awt.CardLayout;
 import javax.swing.JComboBox;
-import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
@@ -36,7 +32,6 @@ public class TelaCadProprietario extends JFrame {
 	private JComboBox<Model.Versao> versaoCBox;
 	private JFormattedTextField fieldPlaca;
 	private JButton btnRegistrar;
-	private JButton btnSair;
 	private JPanel panelCards;
 	private CardLayout cLayout;
 
@@ -44,26 +39,27 @@ public class TelaCadProprietario extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadProprietario() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 555, 300);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 730, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0};
 		gbl_contentPane.rowHeights = new int[]{33, 0, 0, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_contentPane.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		gbl_contentPane.rowWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel label = new JLabel("INFORMAÇÕES PESSOAIS");
-		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 0;
-		gbc_label.gridy = 0;
-		contentPane.add(label, gbc_label);
+		JLabel lblInformaesPessoais = new JLabel("INFORMA\u00C7\u00D5ES PESSOAIS");
+		GridBagConstraints gbc_lblInformaesPessoais = new GridBagConstraints();
+		gbc_lblInformaesPessoais.insets = new Insets(0, 0, 5, 5);
+		gbc_lblInformaesPessoais.gridx = 0;
+		gbc_lblInformaesPessoais.gridy = 0;
+		contentPane.add(lblInformaesPessoais, gbc_lblInformaesPessoais);
 		
-		JLabel lblVeculo = new JLabel("VEÍCULO");
+		JLabel lblVeculo = new JLabel("VE\u00CDCULO");
 		GridBagConstraints gbc_lblVeculo = new GridBagConstraints();
 		gbc_lblVeculo.insets = new Insets(0, 0, 5, 0);
 		gbc_lblVeculo.gridx = 1;
@@ -72,14 +68,13 @@ public class TelaCadProprietario extends JFrame {
 		
 		JPanel panelInfoPessoal = new JPanel();
 		GridBagConstraints gbc_panelInfoPessoal = new GridBagConstraints();
-		gbc_panelInfoPessoal.anchor = GridBagConstraints.WEST;
-		gbc_panelInfoPessoal.fill = GridBagConstraints.VERTICAL;
+		gbc_panelInfoPessoal.fill = GridBagConstraints.BOTH;
 		gbc_panelInfoPessoal.insets = new Insets(0, 0, 5, 5);
 		gbc_panelInfoPessoal.gridx = 0;
 		gbc_panelInfoPessoal.gridy = 1;
 		contentPane.add(panelInfoPessoal, gbc_panelInfoPessoal);
 		GridBagLayout gbl_panelInfoPessoal = new GridBagLayout();
-		gbl_panelInfoPessoal.columnWidths = new int[]{121, 142, 0};
+		gbl_panelInfoPessoal.columnWidths = new int[]{78, 142, 0};
 		gbl_panelInfoPessoal.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panelInfoPessoal.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		gbl_panelInfoPessoal.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
@@ -164,15 +159,17 @@ public class TelaCadProprietario extends JFrame {
 		gbl_panelInfoVeiculo.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		panelInfoVeiculo.setLayout(gbl_panelInfoVeiculo);
 		
-		rdbtnNovoVeiculo = new JRadioButton("Novo Veículo");
+		rdbtnNovoVeiculo = new JRadioButton("Novo Ve\u00EDculo");
 		GridBagConstraints gbc_rdbtnNovoVeculo = new GridBagConstraints();
+		gbc_rdbtnNovoVeculo.anchor = GridBagConstraints.WEST;
 		gbc_rdbtnNovoVeculo.insets = new Insets(0, 0, 5, 5);
 		gbc_rdbtnNovoVeculo.gridx = 0;
 		gbc_rdbtnNovoVeculo.gridy = 0;
 		panelInfoVeiculo.add(rdbtnNovoVeiculo, gbc_rdbtnNovoVeculo);
 		
-		rdbtnVeiculoExistente = new JRadioButton("Veículo Existente");
+		rdbtnVeiculoExistente = new JRadioButton("Ve\u00EDculo Existente");
 		GridBagConstraints gbc_rdbtnVeculoExistente = new GridBagConstraints();
+		gbc_rdbtnVeculoExistente.anchor = GridBagConstraints.EAST;
 		gbc_rdbtnVeculoExistente.insets = new Insets(0, 0, 5, 0);
 		gbc_rdbtnVeculoExistente.gridx = 1;
 		gbc_rdbtnVeculoExistente.gridy = 0;
@@ -230,7 +227,7 @@ public class TelaCadProprietario extends JFrame {
 		gbc_modeloCBox.gridy = 1;
 		panelVeicNovo.add(modeloCBox, gbc_modeloCBox);
 		
-		JLabel lblVerso = new JLabel("Versão: ");
+		JLabel lblVerso = new JLabel("Vers\u00E3o:");
 		GridBagConstraints gbc_lblVerso = new GridBagConstraints();
 		gbc_lblVerso.anchor = GridBagConstraints.EAST;
 		gbc_lblVerso.insets = new Insets(0, 0, 5, 5);
@@ -304,13 +301,6 @@ public class TelaCadProprietario extends JFrame {
 		gbc_btnRegistrar.gridy = 2;
 		contentPane.add(btnRegistrar, gbc_btnRegistrar);
 		
-		btnSair = new JButton("Sair");
-		GridBagConstraints gbc_btnSair = new GridBagConstraints();
-		gbc_btnSair.anchor = GridBagConstraints.SOUTHEAST;
-		gbc_btnSair.gridx = 1;
-		gbc_btnSair.gridy = 2;
-		contentPane.add(btnSair, gbc_btnSair);
-		
 		Controller.ControllerCadProprietario controller = new Controller.ControllerCadProprietario(this);
 	}
 
@@ -365,10 +355,6 @@ public class TelaCadProprietario extends JFrame {
 
 	public JButton getBtnRegistrar() {
 		return btnRegistrar;
-	}
-
-	public JButton getBtnSair() {
-		return btnSair;
 	}
 	
 	public JPanel getPanelCards() {

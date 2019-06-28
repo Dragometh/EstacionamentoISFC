@@ -4,14 +4,16 @@ public class Carro implements java.io.Serializable{
     // Atributos
 	private String placa;
     private String cor;
-    private Marca marca;
+    private Versao versao;
     private Proprietario dono;
     
     // Construtores
-    public Carro(String placa, String cor, Marca marca, Proprietario dono) {
+    public Carro() {super();}
+    
+    public Carro(String placa, String cor, Versao versao, Proprietario dono) {
     	this.placa = placa;
         this.cor = cor;
-        this.marca = marca;
+        this.versao = versao;
         this.dono = dono;
     }
 
@@ -32,12 +34,12 @@ public class Carro implements java.io.Serializable{
         this.cor = cor;
     }
 
-    public Marca getMarca() {
-        return marca;
+    public Versao getVersao() {
+        return versao;
     }
 
-    public void setMarca(Marca marca) {
-        this.marca = marca;
+    public void setVersao(Versao versao) {
+        this.versao = versao;
     }
 
 	public Proprietario getDono() {

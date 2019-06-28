@@ -26,12 +26,11 @@ public class ControllerCadUser implements ActionListener{
 		tela.pack();
 		tela.setTitle("Cadastro de Usuarios");
 		
-		//Adiï¿½ï¿½o de ActionListeners
-		tela.getBtnCancelar().addActionListener(this);
+		//Adição de ActionListeners
 		tela.getBtnRegistrar().addActionListener(this);
 		tela.getBtnLimpar().addActionListener(this);
 		
-		// Logica para formataï¿½ï¿½o de campos numï¿½ricos
+		// Logica para formatação de campos numéricos
 		MaskFormatter formatadorCpf;
 		MaskFormatter formatadorRg;
 		MaskFormatter formatadorFone;
@@ -165,16 +164,16 @@ public class ControllerCadUser implements ActionListener{
 				Service.ServiceUsers.Create(u);
 				Limpar();
 			} else if (!usuariosValidos) {
-				JOptionPane.showMessageDialog(null, "Nome de usuario jï¿½ existe!");
+				JOptionPane.showMessageDialog(null, "Nome de usuario já existe!");
 				tela.getPasswordField().setText("");
 				tela.getConfirmPassField().setText("");
 			} else if (!senhasValidas) {
-				JOptionPane.showMessageDialog(null, "As senhas nï¿½o conferem!");
+				JOptionPane.showMessageDialog(null, "As senhas não conferem!");
 				tela.getPasswordField().setText("");
 				tela.getConfirmPassField().setText("");
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Hï¿½ campos em branco!");
+			JOptionPane.showMessageDialog(null, "Há campos em branco!");
 		}
 	}
 	
@@ -194,8 +193,6 @@ public class ControllerCadUser implements ActionListener{
 			Registrar();
 		} else if (e.getSource() == tela.getBtnLimpar()) {
 			Limpar();
-		} else if (e.getSource() == tela.getBtnCancelar()) {
-			tela.dispose();
 		}
 	}
 }

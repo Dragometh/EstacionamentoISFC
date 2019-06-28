@@ -8,7 +8,7 @@ public class Pessoa implements java.io.Serializable{
 	private Long fone;
 	
 	// Construtores
-	public Pessoa() {}
+	public Pessoa() {super();}
 	
 	public Pessoa(String nome, Long cpf, Long rg, Long fone) {
 		super();

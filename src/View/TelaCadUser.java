@@ -25,7 +25,6 @@ import java.awt.Insets;
 public class TelaCadUser extends JFrame {
 	private JPanel contentPane;
 	private JButton btnRegistrar;
-	private JButton btnCancelar;
 	private JTextField nomeField;
 	private JPasswordField confirmPassField;
 	private JPasswordField passwordField;
@@ -40,8 +39,8 @@ public class TelaCadUser extends JFrame {
 	 */
 	public TelaCadUser() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 460, 390);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 494, 307);
 		
 		contentPane = new JPanel();
 		setContentPane(contentPane);
@@ -52,7 +51,7 @@ public class TelaCadUser extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JLabel lblSistema = new JLabel("INFORMAÇÕES CADASTRAIS");
+		JLabel lblSistema = new JLabel("INFORMA\u00C7\u00D5ES CADASTRAIS");
 		lblSistema.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblSistema = new GridBagConstraints();
 		gbc_lblSistema.anchor = GridBagConstraints.SOUTH;
@@ -63,7 +62,7 @@ public class TelaCadUser extends JFrame {
 		gbc_lblSistema.gridy = 0;
 		contentPane.add(lblSistema, gbc_lblSistema);
 		
-		JLabel lblInformaesPessoais = new JLabel("INFORMAÇÕES PESSOAIS");
+		JLabel lblInformaesPessoais = new JLabel("INFORMA\u00C7\u00D5ES PESSOAIS");
 		lblInformaesPessoais.setFont(new Font("Tahoma", Font.BOLD, 12));
 		GridBagConstraints gbc_lblInformaesPessoais = new GridBagConstraints();
 		gbc_lblInformaesPessoais.anchor = GridBagConstraints.SOUTHWEST;
@@ -176,16 +175,16 @@ public class TelaCadUser extends JFrame {
 		gbc_confirmPassField.gridy = 6;
 		contentPane.add(confirmPassField, gbc_confirmPassField);
 		
-				rgField = new JFormattedTextField();
-				rgField.setFocusLostBehavior(JFormattedTextField.COMMIT);
-				rgField.setLocale(new Locale("pt", "BR"));
-				GridBagConstraints gbc_rgField = new GridBagConstraints();
-				gbc_rgField.fill = GridBagConstraints.BOTH;
-				gbc_rgField.insets = new Insets(0, 0, 5, 0);
-				gbc_rgField.gridwidth = 3;
-				gbc_rgField.gridx = 4;
-				gbc_rgField.gridy = 6;
-				contentPane.add(rgField, gbc_rgField);
+		rgField = new JFormattedTextField();
+		rgField.setFocusLostBehavior(JFormattedTextField.COMMIT);
+		rgField.setLocale(new Locale("pt", "BR"));
+		GridBagConstraints gbc_rgField = new GridBagConstraints();
+		gbc_rgField.fill = GridBagConstraints.BOTH;
+		gbc_rgField.insets = new Insets(0, 0, 5, 0);
+		gbc_rgField.gridwidth = 3;
+		gbc_rgField.gridx = 4;
+		gbc_rgField.gridy = 6;
+		contentPane.add(rgField, gbc_rgField);
 		
 		JLabel lblFone = new JLabel("Telefone:");
 		GridBagConstraints gbc_lblFone = new GridBagConstraints();
@@ -224,13 +223,6 @@ public class TelaCadUser extends JFrame {
 		gbc_btnLimpar.gridy = 10;
 		contentPane.add(btnLimpar, gbc_btnLimpar);
 		
-		btnCancelar = new JButton("Cancelar");
-		GridBagConstraints gbc_btnCancelar = new GridBagConstraints();
-		gbc_btnCancelar.fill = GridBagConstraints.BOTH;
-		gbc_btnCancelar.gridx = 6;
-		gbc_btnCancelar.gridy = 10;
-		contentPane.add(btnCancelar, gbc_btnCancelar);
-		
 		Controller.ControllerCadUser cCad = new Controller.ControllerCadUser(this);
 
 		/** NumberFormat formato = NumberFormat.getIntegerInstance();
@@ -245,10 +237,6 @@ public class TelaCadUser extends JFrame {
 
 	public JButton getBtnRegistrar() {
 		return btnRegistrar;
-	}
-
-	public JButton getBtnCancelar() {
-		return btnCancelar;
 	}
 
 	public JFormattedTextField getRgField() {

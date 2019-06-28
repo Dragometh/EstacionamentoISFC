@@ -6,9 +6,8 @@ public class Categoria implements java.io.Serializable{
 	private String classe;
 	
 	//Constructors
-	public Categoria() {
-		super();
-	}
+	public Categoria() {super();}
+	
 	public Categoria ( String carroceria, String classe) {
 		super();
 		this.carroceria = carroceria;

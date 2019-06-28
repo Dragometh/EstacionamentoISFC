@@ -5,6 +5,8 @@ public class Proprietario extends Pessoa implements java.io.Serializable{
 	private Carro veiculo;
 
 	// Construtor
+	public Proprietario() {super();}
+	
 	public Proprietario(String nome, Long cpf, Long rg, Long fone, Carro vehiculo) {
 		super(nome, cpf, rg, fone);
 		this.veiculo = vehiculo;

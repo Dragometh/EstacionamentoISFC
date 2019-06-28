@@ -8,9 +8,7 @@ public class UsrSys extends Pessoa implements java.io.Serializable{
 	private String password;
 	
 	// Construtores
-	public UsrSys() {
-		super();
-	}
+	public UsrSys() {super();}
 	
 	public UsrSys(String username, String password) {
 		super();

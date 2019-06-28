@@ -28,7 +28,6 @@ public class ControllerCadMarcas implements ActionListener{
 		tela.getBtnMarcas().addActionListener(this);
 		tela.getBtnModelos().addActionListener(this);
 		tela.getBtnVersoes().addActionListener(this);
-		tela.getBtnSair().addActionListener(this);
 		tela.getVersoesMarcaCBox().addActionListener(this);
 		
 	}
@@ -52,11 +51,11 @@ public class ControllerCadMarcas implements ActionListener{
 				if (!marcaNomeInvalido) {
 					Service.ServiceMarcas.Create(marca);
 				} else {
-					JOptionPane.showMessageDialog(null, "Marca jï¿½ estï¿½ registrada!");
+					JOptionPane.showMessageDialog(null, "Marca já está registrada!");
 				}
 				
 			} else {
-				JOptionPane.showMessageDialog(null, "Hï¿½ campos em branco/nï¿½o selecionados!");
+				JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
 			}
 			
 			
@@ -95,10 +94,10 @@ public class ControllerCadMarcas implements ActionListener{
 					}
 					Service.ServiceModelos.Create(modelo);
 				} else {
-					JOptionPane.showMessageDialog(null, "Modelo jï¿½ estï¿½ registrado dentro dessa marca!");
+					JOptionPane.showMessageDialog(null, "Modelo já está registrado dentro dessa marca!");
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Hï¿½ campos em branco/nï¿½o selecionados!");
+				JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
 			}
 			
 			break;
@@ -147,11 +146,11 @@ public class ControllerCadMarcas implements ActionListener{
 					}
 					Service.ServiceVersoes.Create(versao);
 				} else {
-					JOptionPane.showMessageDialog(null, "Essa versao jï¿½ estï¿½ registrada dentro desse modelo!");
+					JOptionPane.showMessageDialog(null, "Essa versao já está registrada dentro desse modelo!");
 				} 
 				break;
 			} else {
-				JOptionPane.showMessageDialog(null, "Hï¿½ campos em branco/nï¿½o selecionados!");
+				JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
 			}
 		}
 	}
@@ -214,10 +213,7 @@ public class ControllerCadMarcas implements ActionListener{
 			tela.getVersoesCarroceriaCBox().setSelectedIndex(0);
 			tela.getVersoesClasseCBox().setModel(new DefaultComboBoxModel<String>(catClassList));
 			tela.getVersoesClasseCBox().setSelectedIndex(0);
-			
-		} else if (e.getSource() == tela.getBtnSair()) {
-			tela.dispose();
-			
+
 		} else if (e.getSource() == tela.getVersoesMarcaCBox()) {
 			Marca marcaSelec = (Marca) tela.getVersoesMarcaCBox().getSelectedItem();
 			Modelo[] modelosList2 = null;

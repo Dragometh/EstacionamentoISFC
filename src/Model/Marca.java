@@ -7,14 +7,14 @@ public class Marca implements java.io.Serializable{
     private ArrayList<Modelo> listaModelos;
 	
     // Construtores
+    public Marca() {super();}
+    
     public Marca(String fabricante, ArrayList<Modelo> listaModelos) {
 		super();
 		this.fabricante = fabricante;
 		this.listaModelos = listaModelos;
 	}
-    
-    public Marca() {}
-    
+
     // Getters & Setters
 	public String getFabricante() {
 		return fabricante;

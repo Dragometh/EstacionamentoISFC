@@ -24,7 +24,6 @@ public class TelaCadMarcas extends JFrame {
 	private JComboBox<Model.Marca> versoesMarcaCBox;
 	private JComboBox<Model.Modelo> versoesModeloCBox;
 	private JButton btnVersoes;
-	private JButton btnSair;
 	private JButton btnModelos;
 	private JButton btnMarcas;
 	private CardLayout cl_cardPanels;
@@ -37,7 +36,7 @@ public class TelaCadMarcas extends JFrame {
 
 	public TelaCadMarcas() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 600, 211);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,13 +87,6 @@ public class TelaCadMarcas extends JFrame {
 		gbc_btnVersoes.gridx = 0;
 		gbc_btnVersoes.gridy = 2;
 		btnPanel.add(btnVersoes, gbc_btnVersoes);
-		
-		btnSair = new JButton("Sair");
-		GridBagConstraints gbc_btnSair = new GridBagConstraints();
-		gbc_btnSair.anchor = GridBagConstraints.SOUTHWEST;
-		gbc_btnSair.gridx = 0;
-		gbc_btnSair.gridy = 3;
-		btnPanel.add(btnSair, gbc_btnSair);
 		
 		cardPanels = new JPanel();
 		GridBagConstraints gbc_cardPanels = new GridBagConstraints();
@@ -330,11 +322,7 @@ public class TelaCadMarcas extends JFrame {
 	public JButton getBtnVersoes() {
 		return btnVersoes;
 	}
-
-	public JButton getBtnSair() {
-		return btnSair;
-	}
-
+	
 	public JButton getBtnModelos() {
 		return btnModelos;
 	}

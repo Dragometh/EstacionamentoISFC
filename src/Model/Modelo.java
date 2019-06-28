@@ -8,14 +8,14 @@ public class Modelo implements java.io.Serializable{
     private ArrayList<Versao> listaVersoes;
 
     // Construtores
+    public Modelo() {super();}
+    
     public Modelo(String nome, Marca fabricante, ArrayList<Versao> listaVersoes) {
 		super();
 		this.nome = nome;
 		this.fabricante = fabricante;
 		this.listaVersoes = listaVersoes;
 	}
-    
-    public Modelo() {}
 
     // Getters & Setters
   	public String getNome() {
