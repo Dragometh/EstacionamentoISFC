@@ -10,6 +10,11 @@ public class Modelo implements java.io.Serializable{
     // Construtores
     public Modelo() {super();}
     
+    public Modelo(String nome) {
+    	super();
+    	this.nome = nome;
+    }
+    
     public Modelo(String nome, Marca fabricante, ArrayList<Versao> listaVersoes) {
 		super();
 		this.nome = nome;

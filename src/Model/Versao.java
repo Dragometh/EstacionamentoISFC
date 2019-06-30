@@ -9,6 +9,11 @@ public class Versao implements java.io.Serializable{
     // Construtores
     public Versao() {super();}
     
+    public Versao(String nome) {
+    	super();
+    	this.nome = nome;
+    }
+    
     public Versao(String nome, Marca fabricante, Modelo modelo, Categoria categoria) {
     	this.nome = nome;
         this.fabricante = fabricante;

@@ -72,13 +72,6 @@ public class ControllerCadUser implements ActionListener{
 		boolean senhasValidas = false;
 		boolean camposEmBranco = false;
 		
-		try {
-
-			tela.getFoneField().commitEdit();
-		} catch (ParseException ex) {
-			ex.printStackTrace();
-		}
-		
 		// Detec��o de campos em branco
 		switch(0) {
 			case 0:
@@ -102,9 +95,9 @@ public class ControllerCadUser implements ActionListener{
 					try {
 						tela.getRgField().commitEdit();
 						u.setRg(Long.parseLong((String) tela.getRgField().getValue()));
-						System.out.println(u.getRg());
 					} catch(Exception e) {
 						JOptionPane.showMessageDialog(null, "Campo do RG deve ser completamente preenchido!");
+						camposEmBranco = true;
 						e.printStackTrace();
 						break;
 					}
@@ -118,9 +111,9 @@ public class ControllerCadUser implements ActionListener{
 					try {
 						tela.getCpfField().commitEdit();
 						u.setCpf(Long.parseLong((String) tela.getCpfField().getValue()));
-						System.out.println(u.getCpf());
 					} catch(Exception e) {
 						JOptionPane.showMessageDialog(null, "Campo do CPF deve ser completamente preenchido!");
+						camposEmBranco = true;
 						e.printStackTrace();
 						break;
 					}
@@ -132,10 +125,11 @@ public class ControllerCadUser implements ActionListener{
 			case 4:
 				if (tela.getFoneField().getValue() != null) {
 					try {
+						tela.getFoneField().commitEdit();
 						u.setFone(Long.parseLong((String) tela.getFoneField().getValue()));
-						System.out.println(u.getFone());
-					} catch(NumberFormatException e) {
+					} catch(Exception e) {
 						JOptionPane.showMessageDialog(null, "Campo do Telefone deve ser completamente preenchido!");
+						camposEmBranco = true;
 						e.printStackTrace();
 						break;
 					}

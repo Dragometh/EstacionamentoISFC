@@ -15,25 +15,23 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
+import Model.Marca;
+import Model.Modelo;
+import Model.Versao;
 
 public class TelaCadProprietario extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField fieldNome;
-	private JTextField fieldCor;
-	private JTable veicTable;
 	private JFormattedTextField fieldCpf;
 	private JFormattedTextField fieldRg;
 	private JFormattedTextField fieldFone;
-	private JRadioButton rdbtnNovoVeiculo;
-	private JRadioButton rdbtnVeiculoExistente;
-	private JComboBox<Model.Marca> marcaCBox;
-	private JComboBox<Model.Modelo> modeloCBox;
-	private JComboBox<Model.Versao> versaoCBox;
-	private JFormattedTextField fieldPlaca;
 	private JButton btnRegistrar;
-	private JPanel panelCards;
-	private CardLayout cLayout;
+	private JTextField fieldCor;
+	private JComboBox<Marca> marcaCBox;
+	private JComboBox<Modelo> modeloCBox;
+	private JComboBox<Versao> versaoCBox;
+	private JFormattedTextField fieldPlaca;
 
 	/**
 	 * Create the frame.
@@ -154,62 +152,26 @@ public class TelaCadProprietario extends JFrame {
 		contentPane.add(panelInfoVeiculo, gbc_panelInfoVeiculo);
 		GridBagLayout gbl_panelInfoVeiculo = new GridBagLayout();
 		gbl_panelInfoVeiculo.columnWidths = new int[]{0, 0, 0};
-		gbl_panelInfoVeiculo.rowHeights = new int[]{0, 0, 0};
-		gbl_panelInfoVeiculo.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
-		gbl_panelInfoVeiculo.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_panelInfoVeiculo.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_panelInfoVeiculo.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
+		gbl_panelInfoVeiculo.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelInfoVeiculo.setLayout(gbl_panelInfoVeiculo);
-		
-		rdbtnNovoVeiculo = new JRadioButton("Novo Ve\u00EDculo");
-		GridBagConstraints gbc_rdbtnNovoVeculo = new GridBagConstraints();
-		gbc_rdbtnNovoVeculo.anchor = GridBagConstraints.WEST;
-		gbc_rdbtnNovoVeculo.insets = new Insets(0, 0, 5, 5);
-		gbc_rdbtnNovoVeculo.gridx = 0;
-		gbc_rdbtnNovoVeculo.gridy = 0;
-		panelInfoVeiculo.add(rdbtnNovoVeiculo, gbc_rdbtnNovoVeculo);
-		
-		rdbtnVeiculoExistente = new JRadioButton("Ve\u00EDculo Existente");
-		GridBagConstraints gbc_rdbtnVeculoExistente = new GridBagConstraints();
-		gbc_rdbtnVeculoExistente.anchor = GridBagConstraints.EAST;
-		gbc_rdbtnVeculoExistente.insets = new Insets(0, 0, 5, 0);
-		gbc_rdbtnVeculoExistente.gridx = 1;
-		gbc_rdbtnVeculoExistente.gridy = 0;
-		panelInfoVeiculo.add(rdbtnVeiculoExistente, gbc_rdbtnVeculoExistente);
-		
-		panelCards = new JPanel();
-		GridBagConstraints gbc_panelCards = new GridBagConstraints();
-		gbc_panelCards.gridwidth = 2;
-		gbc_panelCards.insets = new Insets(0, 0, 0, 5);
-		gbc_panelCards.fill = GridBagConstraints.BOTH;
-		gbc_panelCards.gridx = 0;
-		gbc_panelCards.gridy = 1;
-		panelInfoVeiculo.add(panelCards, gbc_panelCards);
-		cLayout = new CardLayout(0, 0);
-		panelCards.setLayout(cLayout);
-		
-		JPanel panelVeicNovo = new JPanel();
-		panelCards.add(panelVeicNovo, "Novos");
-		GridBagLayout gbl_panelVeicNovo = new GridBagLayout();
-		gbl_panelVeicNovo.columnWidths = new int[]{0, 0, 0};
-		gbl_panelVeicNovo.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panelVeicNovo.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_panelVeicNovo.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		panelVeicNovo.setLayout(gbl_panelVeicNovo);
 		
 		JLabel lblMarca = new JLabel("Marca: ");
 		GridBagConstraints gbc_lblMarca = new GridBagConstraints();
-		gbc_lblMarca.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMarca.anchor = GridBagConstraints.EAST;
+		gbc_lblMarca.insets = new Insets(0, 0, 5, 5);
 		gbc_lblMarca.gridx = 0;
 		gbc_lblMarca.gridy = 0;
-		panelVeicNovo.add(lblMarca, gbc_lblMarca);
+		panelInfoVeiculo.add(lblMarca, gbc_lblMarca);
 		
-		marcaCBox = new JComboBox<Model.Marca>();
+		marcaCBox = new JComboBox<Marca>();
 		GridBagConstraints gbc_marcaCBox = new GridBagConstraints();
 		gbc_marcaCBox.insets = new Insets(0, 0, 5, 0);
 		gbc_marcaCBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_marcaCBox.gridx = 1;
 		gbc_marcaCBox.gridy = 0;
-		panelVeicNovo.add(marcaCBox, gbc_marcaCBox);
+		panelInfoVeiculo.add(marcaCBox, gbc_marcaCBox);
 		
 		JLabel lblModelo = new JLabel("Modelo:");
 		GridBagConstraints gbc_lblModelo = new GridBagConstraints();
@@ -217,31 +179,31 @@ public class TelaCadProprietario extends JFrame {
 		gbc_lblModelo.insets = new Insets(0, 0, 5, 5);
 		gbc_lblModelo.gridx = 0;
 		gbc_lblModelo.gridy = 1;
-		panelVeicNovo.add(lblModelo, gbc_lblModelo);
+		panelInfoVeiculo.add(lblModelo, gbc_lblModelo);
 		
-		modeloCBox = new JComboBox<Model.Modelo>();
+		modeloCBox = new JComboBox<Modelo>();
 		GridBagConstraints gbc_modeloCBox = new GridBagConstraints();
 		gbc_modeloCBox.insets = new Insets(0, 0, 5, 0);
 		gbc_modeloCBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_modeloCBox.gridx = 1;
 		gbc_modeloCBox.gridy = 1;
-		panelVeicNovo.add(modeloCBox, gbc_modeloCBox);
+		panelInfoVeiculo.add(modeloCBox, gbc_modeloCBox);
 		
-		JLabel lblVerso = new JLabel("Vers\u00E3o:");
-		GridBagConstraints gbc_lblVerso = new GridBagConstraints();
-		gbc_lblVerso.anchor = GridBagConstraints.EAST;
-		gbc_lblVerso.insets = new Insets(0, 0, 5, 5);
-		gbc_lblVerso.gridx = 0;
-		gbc_lblVerso.gridy = 2;
-		panelVeicNovo.add(lblVerso, gbc_lblVerso);
+		JLabel lblVersao = new JLabel("Vers\u00E3o:");
+		GridBagConstraints gbc_lblVersao = new GridBagConstraints();
+		gbc_lblVersao.anchor = GridBagConstraints.EAST;
+		gbc_lblVersao.insets = new Insets(0, 0, 5, 5);
+		gbc_lblVersao.gridx = 0;
+		gbc_lblVersao.gridy = 2;
+		panelInfoVeiculo.add(lblVersao, gbc_lblVersao);
 		
-		versaoCBox = new JComboBox<Model.Versao>();
+		versaoCBox = new JComboBox<Versao>();
 		GridBagConstraints gbc_versaoCBox = new GridBagConstraints();
 		gbc_versaoCBox.insets = new Insets(0, 0, 5, 0);
 		gbc_versaoCBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_versaoCBox.gridx = 1;
 		gbc_versaoCBox.gridy = 2;
-		panelVeicNovo.add(versaoCBox, gbc_versaoCBox);
+		panelInfoVeiculo.add(versaoCBox, gbc_versaoCBox);
 		
 		JLabel lblPlaca = new JLabel("Placa: ");
 		GridBagConstraints gbc_lblPlaca = new GridBagConstraints();
@@ -249,7 +211,7 @@ public class TelaCadProprietario extends JFrame {
 		gbc_lblPlaca.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPlaca.gridx = 0;
 		gbc_lblPlaca.gridy = 3;
-		panelVeicNovo.add(lblPlaca, gbc_lblPlaca);
+		panelInfoVeiculo.add(lblPlaca, gbc_lblPlaca);
 		
 		fieldPlaca = new JFormattedTextField();
 		GridBagConstraints gbc_fieldPlaca = new GridBagConstraints();
@@ -257,7 +219,7 @@ public class TelaCadProprietario extends JFrame {
 		gbc_fieldPlaca.fill = GridBagConstraints.HORIZONTAL;
 		gbc_fieldPlaca.gridx = 1;
 		gbc_fieldPlaca.gridy = 3;
-		panelVeicNovo.add(fieldPlaca, gbc_fieldPlaca);
+		panelInfoVeiculo.add(fieldPlaca, gbc_fieldPlaca);
 		
 		JLabel lblCor = new JLabel("Cor:");
 		GridBagConstraints gbc_lblCor = new GridBagConstraints();
@@ -265,33 +227,15 @@ public class TelaCadProprietario extends JFrame {
 		gbc_lblCor.insets = new Insets(0, 0, 0, 5);
 		gbc_lblCor.gridx = 0;
 		gbc_lblCor.gridy = 4;
-		panelVeicNovo.add(lblCor, gbc_lblCor);
+		panelInfoVeiculo.add(lblCor, gbc_lblCor);
 		
 		fieldCor = new JTextField();
+		fieldCor.setColumns(10);
 		GridBagConstraints gbc_fieldCor = new GridBagConstraints();
 		gbc_fieldCor.fill = GridBagConstraints.HORIZONTAL;
 		gbc_fieldCor.gridx = 1;
 		gbc_fieldCor.gridy = 4;
-		panelVeicNovo.add(fieldCor, gbc_fieldCor);
-		fieldCor.setColumns(10);
-		
-		JPanel panelVeicExistentes = new JPanel();
-		panelCards.add(panelVeicExistentes, "Existentes");
-		GridBagLayout gbl_panelVeicExistentes = new GridBagLayout();
-		gbl_panelVeicExistentes.columnWidths = new int[]{0, 0};
-		gbl_panelVeicExistentes.rowHeights = new int[]{0, 0};
-		gbl_panelVeicExistentes.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gbl_panelVeicExistentes.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		panelVeicExistentes.setLayout(gbl_panelVeicExistentes);
-		
-		veicTable = new JTable();
-		veicTable.setShowVerticalLines(false);
-		veicTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		GridBagConstraints gbc_veicTable = new GridBagConstraints();
-		gbc_veicTable.fill = GridBagConstraints.BOTH;
-		gbc_veicTable.gridx = 0;
-		gbc_veicTable.gridy = 0;
-		panelVeicExistentes.add(veicTable, gbc_veicTable);
+		panelInfoVeiculo.add(fieldCor, gbc_fieldCor);
 		
 		btnRegistrar = new JButton("Registrar");
 		GridBagConstraints gbc_btnRegistrar = new GridBagConstraints();
@@ -313,10 +257,6 @@ public class TelaCadProprietario extends JFrame {
 		return fieldCor;
 	}
 
-	public JTable getVeicTable() {
-		return veicTable;
-	}
-
 	public JFormattedTextField getFieldCpf() {
 		return fieldCpf;
 	}
@@ -327,14 +267,6 @@ public class TelaCadProprietario extends JFrame {
 
 	public JFormattedTextField getFieldFone() {
 		return fieldFone;
-	}
-
-	public JRadioButton getRdbtnNovoVeiculo() {
-		return rdbtnNovoVeiculo;
-	}
-
-	public JRadioButton getRdbtnVeiculoExistente() {
-		return rdbtnVeiculoExistente;
 	}
 
 	public JComboBox<Model.Marca> getMarcaCBox() {
@@ -355,13 +287,5 @@ public class TelaCadProprietario extends JFrame {
 
 	public JButton getBtnRegistrar() {
 		return btnRegistrar;
-	}
-	
-	public JPanel getPanelCards() {
-		return panelCards;
-	}
-	
-	public CardLayout getCardLayout() {
-		return cLayout;
 	}
 }

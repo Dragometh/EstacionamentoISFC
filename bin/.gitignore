@@ -1,6 +1,5 @@
-/Controller/
 /DAO/
-/Model/
-/Serial/
 /Service/
+/Controller/
 /View/
+/Serial/

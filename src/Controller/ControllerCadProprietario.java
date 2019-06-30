@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
@@ -14,7 +15,6 @@ import Model.Versao;
 
 public class ControllerCadProprietario implements ActionListener {
 	private View.TelaCadProprietario tela;
-	private javax.swing.ButtonGroup bGroup = new javax.swing.ButtonGroup();
 	private DefaultFormatterFactory formatadorCpfFactory;
 	private DefaultFormatterFactory formatadorRgFactory;
 	private DefaultFormatterFactory formatadorFoneFactory;
@@ -34,14 +34,6 @@ public class ControllerCadProprietario implements ActionListener {
 		marcasList = temp.toArray(marcasList);
 		tela.getMarcaCBox().setModel(new DefaultComboBoxModel<Marca>(marcasList));
 		
-		bGroup.add(tela.getRdbtnNovoVeiculo());
-		bGroup.add(tela.getRdbtnVeiculoExistente());
-		
-		tela.getRdbtnNovoVeiculo().setSelected(true);
-		tela.getCardLayout().show(tela.getPanelCards(), "Novos");
-		
-		tela.getRdbtnNovoVeiculo().addActionListener(this);
-		tela.getRdbtnVeiculoExistente().addActionListener(this);
 		tela.getBtnRegistrar().addActionListener(this);
 		tela.getMarcaCBox().addActionListener(this);
 		tela.getModeloCBox().addActionListener(this);
@@ -81,21 +73,151 @@ public class ControllerCadProprietario implements ActionListener {
 			System.err.println("ERRO: " + e.getMessage());
 		}
 	}
+	/**
+	public <E, T> void CBoxHandler(javax.swing.JComboBox<E> cBox, ArrayList<E> list, String methodToCall) {
+		E selec = (E) cBox.getSelectedItem();
+		
+		T[] array = null;
+		
+		cBox.setEnabled(true);
+		try {
+			java.lang.reflect.Method method = selec.getClass().getMethod(methodToCall, selec.getClass());
+			ArrayList<T> temp = (ArrayList<T>) method.invoke(selec);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	**/
+	private void Registrar() {
+		Model.Proprietario p = new Model.Proprietario();
+		Model.Carro v = new Model.Carro();
+		boolean infoValida = true;
+		boolean camposEmBranco = false;
+		
+		switch(0) {
+			case 0:
+				if (!tela.getFieldNome().getText().isEmpty()) {
+					p.setNome(tela.getFieldNome().getText());
+				} else {
+					System.out.println("Há campos do proprietário em branco!");
+					camposEmBranco = true;
+					break;
+				}
+			case 1:		
+				if (tela.getFieldCpf().getValue() != null) {
+					try {
+						tela.getFieldCpf().commitEdit();
+						p.setCpf(Long.parseLong((String)tela.getFieldCpf().getValue()));
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, "Campo do CPF deve ser completamente preenchido!");
+						camposEmBranco = true;
+						e.printStackTrace();
+						break;
+					}
+				} else {
+					System.out.println("Há campos do proprietário em branco!");
+					camposEmBranco = true;
+					break;
+				}
+			case 2:
+				if (tela.getFieldFone().getValue() != null) {
+					try {
+						tela.getFieldFone().commitEdit();
+						p.setFone(Long.parseLong((String)tela.getFieldFone().getValue()));
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, "Campo do Telefone deve ser completamente preenchido!");
+						camposEmBranco = true;
+						e.printStackTrace();
+						break;
+					}
+				} else {
+					System.out.println("Há campos do proprietário em branco!");
+					camposEmBranco = true;
+					break;
+				}
+			case 3:	
+				if (tela.getFieldRg().getValue() != null) {
+					try {
+						tela.getFieldRg().commitEdit();
+						p.setRg(Long.parseLong((String)tela.getFieldRg().getValue()));
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(null, "Campo do RG deve ser completamente preenchido!");
+						camposEmBranco = true;
+						e.printStackTrace();
+						break;
+					}
+				} else {
+					System.out.println("Há campos do proprietário em branco!");
+					camposEmBranco = true;
+					break;
+				}
+		}
+
+		switch(0) {
+			case 0:
+				if (tela.getVersaoCBox().getSelectedItem() != tela.getVersaoCBox().getItemAt(0)) {
+					v.setVersao((Versao)tela.getVersaoCBox().getSelectedItem());
+				} else {
+					System.out.println("Há campos do veículo em branco!");
+					camposEmBranco = true;
+					break;
+				}
+			case 1:
+				if (!tela.getFieldCor().getText().isEmpty()) {
+					v.setPlaca(tela.getFieldCor().getText());
+				} else {
+					System.out.println("Há campos do veículo em branco!");
+					camposEmBranco = true;
+					break;
+				}
+			case 2:
+				if (!tela.getFieldCor().getText().isEmpty()) {
+					v.setCor(tela.getFieldCor().getText());
+				} else {
+					System.out.println("Há campos do veículo em branco!");
+					camposEmBranco = true;
+					break;
+				}
+		}
+		if (!camposEmBranco) {
+			for (Model.Proprietario dono : Service.ServiceProprietarios.Retrieve()) {
+				if ((dono.getNome().equals(p.getNome())) || (dono.getCpf() == p.getCpf()) || (dono.getRg() == p.getRg()) || (dono.getVeiculo().getPlaca().equals(p.getVeiculo().getPlaca()))) {
+					infoValida = false;
+				}
+			}
+			
+			if (infoValida) {
+				v.setDono(p);
+				p.setVeiculo(v);
+				Service.ServiceProprietarios.Create(p);
+				Service.ServiceCarros.Create(v);
+			} else {
+				JOptionPane.showMessageDialog(null, "Nome, RG, CPF ou Placa já registrado no sistema!");
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
+		}
+	}
 	
 	
 	@Override
 	public void actionPerformed(ActionEvent ev) {
-		if (ev.getSource() == tela.getRdbtnNovoVeiculo()) {	
-			tela.getCardLayout().show(tela.getPanelCards(), "Novos");
-		} else if (ev.getSource() == tela.getRdbtnVeiculoExistente()) {
-			tela.getCardLayout().show(tela.getPanelCards(), "Existentes");
-		} else if (ev.getSource() == tela.getMarcaCBox()) {
+		if (ev.getSource() == tela.getMarcaCBox()) {
 			Marca marcaSelec = (Marca) tela.getMarcaCBox().getSelectedItem();
 			Modelo[] modelosList = null;
+			ArrayList<Modelo> temp = null;
 			
 			if (marcaSelec.getListaModelos() != null) {
+				if (marcaSelec.getListaModelos().get(0).toString() == "Selecionar Modelo") {
+					marcaSelec.getListaModelos().remove(0);
+				}
+				
 				tela.getModeloCBox().setEnabled(true);
-				ArrayList<Modelo> temp = marcaSelec.getListaModelos();
+				if (tela.getVersaoCBox().isEnabled()) {
+					tela.getVersaoCBox().setSelectedIndex(0);
+					tela.getVersaoCBox().setEnabled(false);
+				}
+				temp = marcaSelec.getListaModelos();
 				temp.add(0, new Modelo("Selecionar Modelo", null, null));
 				modelosList = new Modelo[temp.size()];
 				modelosList = temp.toArray(modelosList);
@@ -104,29 +226,21 @@ public class ControllerCadProprietario implements ActionListener {
 		} else if (ev.getSource() == tela.getModeloCBox()) {
 			Modelo modeloSelec = (Modelo) tela.getModeloCBox().getSelectedItem();
 			Versao[] versaoList = null;
+			ArrayList<Versao> temp = null;
 			
 			if (modeloSelec.getListaVersoes() != null) {
+				if (modeloSelec.getListaVersoes().get(0).toString() == "Selecionar Versao") {
+					modeloSelec.getListaVersoes().remove(0);
+				}
 				tela.getVersaoCBox().setEnabled(true);
-				ArrayList<Versao> temp = modeloSelec.getListaVersoes();
-				temp.add(0, new Versao("Selecionar Modelo", null, null, null));
+				temp = modeloSelec.getListaVersoes();
+				temp.add(0, new Versao("Selecionar Versao", null, null, null));
 				versaoList = new Versao[temp.size()];
 				versaoList = temp.toArray(versaoList);
 				tela.getVersaoCBox().setModel(new DefaultComboBoxModel<Versao>(versaoList));
 			}
 		} else if (ev.getSource() == tela.getBtnRegistrar()) {
-			Model.Proprietario p = new Model.Proprietario();
-			p.setNome(tela.getFieldNome().getText());
-			p.setCpf(Long.parseLong((String)tela.getFieldCpf().getValue()));
-			p.setFone(Long.parseLong((String)tela.getFieldFone().getValue()));
-			p.setRg(Long.parseLong((String)tela.getFieldRg().getValue()));
-			
-			Model.Carro v = new Model.Carro();
-			v.setDono(p);
-			v.setVersao((Versao)tela.getVersaoCBox().getSelectedItem());
-			v.setPlaca(tela.getFieldCor().getText());
-			v.setCor(tela.getFieldCor().getText());
-			
-			
+			Registrar();
 		}
 	}
 }

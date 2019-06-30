@@ -56,10 +56,12 @@ public class Main {
     	
     	//Inicializando listas de Marca, Modelo, Vers�o, Categorias e Usuarios
     	Service.ServiceCategorias.Retrieve();
+    	Service.ServiceUsers.Retrieve();
     	Service.ServiceMarcas.Retrieve();
     	Service.ServiceModelos.Retrieve();
-    	Service.ServiceUsers.Retrieve();
     	Service.ServiceVersoes.Retrieve();
+    	Service.ServiceProprietarios.Retrieve();
+    	Service.ServiceCarros.Retrieve();
 		try {
 			TelaLogin frameLogin = new TelaLogin();
 		} catch (Exception e) {
