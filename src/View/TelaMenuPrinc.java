@@ -36,15 +36,15 @@ public class TelaMenuPrinc extends JFrame {
 		
 		JMenuItem mntmVerProprietarios = new JMenuItem("Propriet\u00E1rios");
 		mnDados.add(mntmVerProprietarios);
-		
-		JMenuItem mntmVerAutomoveis = new JMenuItem("Ve\u00EDculos");
-		mnDados.add(mntmVerAutomoveis);
-		
+
 		JMenuItem mntmVerMarcas = new JMenuItem("Marcas e Modelos");
 		mnDados.add(mntmVerMarcas);
 		
 		JMenuItem mntmVerUsers = new JMenuItem("Usu\u00E1rios do Sistema");
 		mnDados.add(mntmVerUsers);
+		
+		JMenuItem mntmVerAutomoveis = new JMenuItem("Ve\u00EDculos");
+		mnDados.add(mntmVerAutomoveis);
 		
 		JMenu mnRegistrar = new JMenu("Registrar");
 		menuBar.add(mnRegistrar);

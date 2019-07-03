@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
 
 import Model.Marca;
 import Model.Modelo;
@@ -15,9 +13,6 @@ import Model.Versao;
 
 public class ControllerCadProprietario implements ActionListener {
 	private View.TelaCadProprietario tela;
-	private DefaultFormatterFactory formatadorCpfFactory;
-	private DefaultFormatterFactory formatadorRgFactory;
-	private DefaultFormatterFactory formatadorFoneFactory;
 	
 	public ControllerCadProprietario(View.TelaCadProprietario tela) {
 		super();
@@ -39,39 +34,9 @@ public class ControllerCadProprietario implements ActionListener {
 		tela.getModeloCBox().addActionListener(this);
 		tela.getVersaoCBox().addActionListener(this);
 		
-		// Logica para formatação de campos numéricos
-		MaskFormatter formatadorCpf;
-		MaskFormatter formatadorRg;
-		MaskFormatter formatadorFone;
-		try {
-			formatadorCpf = new MaskFormatter("###.###.###-##");
-			formatadorCpf.setValidCharacters("0123456789");
-			formatadorCpf.setCommitsOnValidEdit(true);
-			formatadorCpf.setPlaceholderCharacter('_');
-			formatadorCpf.setValueContainsLiteralCharacters(false);
-			formatadorCpfFactory = new DefaultFormatterFactory(formatadorCpf);
-			
-			// TODO: RG possui formatos diferentes entre estados. Procurar um workaround decente para este problema.
-			formatadorRg = new MaskFormatter("###.###.###-##");
-			formatadorRg.setValidCharacters("0123456789");;
-			formatadorRg.setCommitsOnValidEdit(true);
-			formatadorRg.setPlaceholderCharacter('_');
-			formatadorRg.setValueContainsLiteralCharacters(false);
-			formatadorRgFactory = new DefaultFormatterFactory(formatadorRg);
-			
-			formatadorFone = new MaskFormatter("#####-####");
-			formatadorFone.setValidCharacters("0123456789");
-			formatadorFone.setCommitsOnValidEdit(true);
-			formatadorFone.setPlaceholderCharacter('_');
-			formatadorFone.setValueContainsLiteralCharacters(false);
-			formatadorFoneFactory = new DefaultFormatterFactory(formatadorFone);
-			
-			tela.getFieldCpf().setFormatterFactory(formatadorCpfFactory);
-			tela.getFieldRg().setFormatterFactory(formatadorRgFactory);
-			tela.getFieldFone().setFormatterFactory(formatadorFoneFactory);
-		} catch (Exception e) {
-			System.err.println("ERRO: " + e.getMessage());
-		}
+		Service.Format.setFormatoCpf(tela.getFieldCpf());
+		Service.Format.setFormatoFone(tela.getFieldFone());
+		Service.Format.setFormatoRg(tela.getFieldRg());
 	}
 	/**
 	public <E, T> void CBoxHandler(javax.swing.JComboBox<E> cBox, ArrayList<E> list, String methodToCall) {
@@ -181,7 +146,12 @@ public class ControllerCadProprietario implements ActionListener {
 		}
 		if (!camposEmBranco) {
 			for (Model.Proprietario dono : Service.ServiceProprietarios.Retrieve()) {
-				if ((dono.getNome().equals(p.getNome())) || (dono.getCpf() == p.getCpf()) || (dono.getRg() == p.getRg()) || (dono.getVeiculo().getPlaca().equals(p.getVeiculo().getPlaca()))) {
+				System.out.println(dono.toString());
+				System.out.println(p.toString());
+				if ((dono.getNome().equals(p.getNome()))
+						|| (dono.getCpf() == p.getCpf())
+						|| (dono.getRg() == p.getRg())
+						|| (dono.getVeiculo().getPlaca().equals(p.getVeiculo().getPlaca()))) {
 					infoValida = false;
 				}
 			}
@@ -240,7 +210,12 @@ public class ControllerCadProprietario implements ActionListener {
 				tela.getVersaoCBox().setModel(new DefaultComboBoxModel<Versao>(versaoList));
 			}
 		} else if (ev.getSource() == tela.getBtnRegistrar()) {
-			Registrar();
+			try {
+				Registrar();
+			} catch (Exception e) {
+				System.err.println("Erro no registro!");
+				e.printStackTrace();
+			}
 		}
 	}
 }

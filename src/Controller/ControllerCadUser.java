@@ -2,22 +2,14 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.text.ParseException;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
 
 import Model.UsrSys;
 import View.TelaCadUser;
 
 public class ControllerCadUser implements ActionListener{
 	private TelaCadUser tela;
-	private DefaultFormatterFactory formatadorCpfFactory;
-	private DefaultFormatterFactory formatadorRgFactory;
-	private DefaultFormatterFactory formatadorFoneFactory;
 	
 	public ControllerCadUser(TelaCadUser tela) {
 		super();
@@ -30,40 +22,9 @@ public class ControllerCadUser implements ActionListener{
 		tela.getBtnRegistrar().addActionListener(this);
 		tela.getBtnLimpar().addActionListener(this);
 		
-		// Logica para formatação de campos numéricos
-		MaskFormatter formatadorCpf;
-		MaskFormatter formatadorRg;
-		MaskFormatter formatadorFone;
-		try {
-			formatadorCpf = new MaskFormatter("###.###.###-##");
-			formatadorCpf.setValidCharacters("0123456789");
-			formatadorCpf.setCommitsOnValidEdit(true);
-			formatadorCpf.setPlaceholderCharacter('_');
-			formatadorCpf.setValueContainsLiteralCharacters(false);
-			formatadorCpfFactory = new DefaultFormatterFactory(formatadorCpf);
-			
-			// TODO: RG possui formatos diferentes entre estados. Procurar um workaround decente para este problema.
-			formatadorRg = new MaskFormatter("###.###.###-##");
-			formatadorRg.setValidCharacters("0123456789");;
-			formatadorRg.setCommitsOnValidEdit(true);
-			formatadorRg.setPlaceholderCharacter('_');
-			formatadorRg.setValueContainsLiteralCharacters(false);
-			formatadorRgFactory = new DefaultFormatterFactory(formatadorRg);
-			
-			formatadorFone = new MaskFormatter("#####-####");
-			formatadorFone.setValidCharacters("0123456789");
-			formatadorFone.setCommitsOnValidEdit(true);
-			formatadorFone.setPlaceholderCharacter('_');
-			formatadorFone.setValueContainsLiteralCharacters(false);
-			formatadorFoneFactory = new DefaultFormatterFactory(formatadorFone);
-			
-			tela.getCpfField().setFormatterFactory(formatadorCpfFactory);
-			tela.getRgField().setFormatterFactory(formatadorRgFactory);
-			tela.getFoneField().setFormatterFactory(formatadorFoneFactory);
-		} catch (Exception e) {
-			System.err.println("ERRO: " + e.getMessage());
-		}
-			
+		Service.Format.setFormatoCpf(tela.getCpfField());
+		Service.Format.setFormatoFone(tela.getFoneField());
+		Service.Format.setFormatoRg(tela.getRgField());
 	}
 	
 	private void Registrar() {

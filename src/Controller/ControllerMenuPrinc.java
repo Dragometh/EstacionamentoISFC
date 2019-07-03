@@ -31,10 +31,11 @@ public class ControllerMenuPrinc implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		/** Sobre os itens do JMenuBar:
 		 * getMenu(i) -> i = 0 = mnDados; i = 1 = mnRegistrar
-		 * getMenu(x).getItem(i) -> para qualquer x;
-		 * -i = 0 = mntn(Ver/Registrar)Proprietarios
-		 * -i = 1 = mntn(Ver/Registrar)Marcas
-		 * -i = 2 = mntn(Ver/Registrar)Usuarios
+		 * getMenu(i).getItem(j) -> para qualquer x (exceto VerCarros);
+		 * j = 0 = mntn(Ver/Registrar)Proprietarios
+		 * j = 1 = mntn(Ver/Registrar)Marcas
+		 * j = 2 = mntn(Ver/Registrar)Usuarios
+		 * i = 0; j = 3 = mntnVerCarros
 		 */
 		
 		
@@ -45,6 +46,8 @@ public class ControllerMenuPrinc implements ActionListener {
 			//mntnVerMarcas
 		} else if (e.getSource() == menuBarHandler(0,2)) {
 			//mntnVerUsuarios
+		}else if (e.getSource() == menuBarHandler(0,3)) {
+			View.TelaVerModel verCarro = new View.TelaVerModel("VerCarro");
 		} else if (e.getSource() == menuBarHandler(1,0)) {
 			View.TelaCadProprietario cadPropr = new View.TelaCadProprietario();
 		} else if (e.getSource() == menuBarHandler(1,1)) {
