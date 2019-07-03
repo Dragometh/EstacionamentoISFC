@@ -37,6 +37,7 @@ public class ControllerCadProprietario implements ActionListener {
 		Service.Format.setFormatoCpf(tela.getFieldCpf());
 		Service.Format.setFormatoFone(tela.getFieldFone());
 		Service.Format.setFormatoRg(tela.getFieldRg());
+		Service.Format.setFormatoPlaca(tela.getFieldPlaca());
 	}
 	/**
 	public <E, T> void CBoxHandler(javax.swing.JComboBox<E> cBox, ArrayList<E> list, String methodToCall) {
@@ -64,7 +65,7 @@ public class ControllerCadProprietario implements ActionListener {
 				if (!tela.getFieldNome().getText().isEmpty()) {
 					p.setNome(tela.getFieldNome().getText());
 				} else {
-					System.out.println("Há campos do proprietário em branco!");
+					System.out.println("Hï¿½ campos do proprietï¿½rio em branco!");
 					camposEmBranco = true;
 					break;
 				}
@@ -80,7 +81,7 @@ public class ControllerCadProprietario implements ActionListener {
 						break;
 					}
 				} else {
-					System.out.println("Há campos do proprietário em branco!");
+					System.out.println("Hï¿½ campos do proprietï¿½rio em branco!");
 					camposEmBranco = true;
 					break;
 				}
@@ -96,7 +97,7 @@ public class ControllerCadProprietario implements ActionListener {
 						break;
 					}
 				} else {
-					System.out.println("Há campos do proprietário em branco!");
+					System.out.println("Hï¿½ campos do proprietï¿½rio em branco!");
 					camposEmBranco = true;
 					break;
 				}
@@ -112,7 +113,7 @@ public class ControllerCadProprietario implements ActionListener {
 						break;
 					}
 				} else {
-					System.out.println("Há campos do proprietário em branco!");
+					System.out.println("Hï¿½ campos do proprietï¿½rio em branco!");
 					camposEmBranco = true;
 					break;
 				}
@@ -123,15 +124,15 @@ public class ControllerCadProprietario implements ActionListener {
 				if (tela.getVersaoCBox().getSelectedItem() != tela.getVersaoCBox().getItemAt(0)) {
 					v.setVersao((Versao)tela.getVersaoCBox().getSelectedItem());
 				} else {
-					System.out.println("Há campos do veículo em branco!");
+					System.out.println("Hï¿½ campos do veï¿½culo em branco!");
 					camposEmBranco = true;
 					break;
 				}
 			case 1:
-				if (!tela.getFieldCor().getText().isEmpty()) {
-					v.setPlaca(tela.getFieldCor().getText());
+				if (tela.getFieldPlaca().getValue() != null) {
+					v.setPlaca((String) tela.getFieldPlaca().getValue());
 				} else {
-					System.out.println("Há campos do veículo em branco!");
+					System.out.println("Hï¿½ campos do veï¿½culo em branco!");
 					camposEmBranco = true;
 					break;
 				}
@@ -139,19 +140,17 @@ public class ControllerCadProprietario implements ActionListener {
 				if (!tela.getFieldCor().getText().isEmpty()) {
 					v.setCor(tela.getFieldCor().getText());
 				} else {
-					System.out.println("Há campos do veículo em branco!");
+					System.out.println("Hï¿½ campos do veï¿½culo em branco!");
 					camposEmBranco = true;
 					break;
 				}
 		}
 		if (!camposEmBranco) {
 			for (Model.Proprietario dono : Service.ServiceProprietarios.Retrieve()) {
-				System.out.println(dono.toString());
-				System.out.println(p.toString());
 				if ((dono.getNome().equals(p.getNome()))
 						|| (dono.getCpf() == p.getCpf())
 						|| (dono.getRg() == p.getRg())
-						|| (dono.getVeiculo().getPlaca().equals(p.getVeiculo().getPlaca()))) {
+						|| (dono.getVeiculo().getPlaca().equals(v.getPlaca()))) {
 					infoValida = false;
 				}
 			}
@@ -162,10 +161,10 @@ public class ControllerCadProprietario implements ActionListener {
 				Service.ServiceProprietarios.Create(p);
 				Service.ServiceCarros.Create(v);
 			} else {
-				JOptionPane.showMessageDialog(null, "Nome, RG, CPF ou Placa já registrado no sistema!");
+				JOptionPane.showMessageDialog(null, "Nome, RG, CPF ou Placa jï¿½ registrado no sistema!");
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
+			JOptionPane.showMessageDialog(null, "Hï¿½ campos em branco/nï¿½o selecionados!");
 		}
 	}
 	

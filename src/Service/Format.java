@@ -4,7 +4,7 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import javax.swing.JFormattedTextField;
 
-//Classe que contêm logica para formatação de campos numéricos e outros campos de input.
+//Classe que contï¿½m logica para formataï¿½ï¿½o de campos numï¿½ricos e outros campos de input.
 public class Format {
 	public static void setFormatoCpf(JFormattedTextField field) {
 		MaskFormatter formatador;
@@ -19,7 +19,7 @@ public class Format {
 			
 			field.setFormatterFactory(formatadorFactory);
 		} catch (Exception e) {
-			System.err.println("Erro na formatação do JFormattedTextField " + field.getName());
+			System.err.println("Erro na formataï¿½ï¿½o do JFormattedTextField " + field.getName());
 			e.printStackTrace();
 		}
 	}
@@ -37,7 +37,7 @@ public class Format {
 			
 			field.setFormatterFactory(formatadorFactory);
 		} catch (Exception e) {
-			System.err.println("Erro na formatação do JFormattedTextField " + field.getName());
+			System.err.println("Erro na formataï¿½ï¿½o do JFormattedTextField " + field.getName());
 			e.printStackTrace();
 		}
 	}
@@ -55,7 +55,24 @@ public class Format {
 			
 			field.setFormatterFactory(formatadorFactory);
 		} catch (Exception e) {
-			System.err.println("Erro na formatação do JFormattedTextField " + field.getName());
+			System.err.println("Erro na formataï¿½ï¿½o do JFormattedTextField " + field.getName());
+			e.printStackTrace();
+		}
+	}
+	
+	public static void setFormatoPlaca(JFormattedTextField field) {	
+		MaskFormatter formatador;
+		DefaultFormatterFactory formatadorFactory;
+		try {
+			formatador = new MaskFormatter("UUU-####");
+			formatador.setCommitsOnValidEdit(true);
+			formatador.setPlaceholderCharacter('_');
+			formatador.setValueContainsLiteralCharacters(false);
+			formatadorFactory = new DefaultFormatterFactory(formatador);
+			
+			field.setFormatterFactory(formatadorFactory);
+		} catch (Exception e) {
+			System.err.println("Erro na formataï¿½ï¿½o do JFormattedTextField " + field.getName());
 			e.printStackTrace();
 		}
 	}

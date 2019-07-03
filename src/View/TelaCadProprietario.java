@@ -104,6 +104,7 @@ public class TelaCadProprietario extends JFrame {
 		panelInfoPessoal.add(lblCpf, gbc_lblCpf);
 		
 		fieldCpf = new JFormattedTextField();
+		fieldCpf.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		GridBagConstraints gbc_fieldCpf = new GridBagConstraints();
 		gbc_fieldCpf.fill = GridBagConstraints.HORIZONTAL;
 		gbc_fieldCpf.insets = new Insets(0, 0, 5, 0);
@@ -120,6 +121,7 @@ public class TelaCadProprietario extends JFrame {
 		panelInfoPessoal.add(lblRg, gbc_lblRg);
 		
 		fieldRg = new JFormattedTextField();
+		fieldRg.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		GridBagConstraints gbc_fieldRg = new GridBagConstraints();
 		gbc_fieldRg.fill = GridBagConstraints.HORIZONTAL;
 		gbc_fieldRg.insets = new Insets(0, 0, 5, 0);
@@ -136,6 +138,7 @@ public class TelaCadProprietario extends JFrame {
 		panelInfoPessoal.add(lblFone, gbc_lblFone);
 		
 		fieldFone = new JFormattedTextField();
+		fieldFone.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		GridBagConstraints gbc_fieldFone = new GridBagConstraints();
 		gbc_fieldFone.insets = new Insets(0, 0, 5, 0);
 		gbc_fieldFone.fill = GridBagConstraints.BOTH;
@@ -214,6 +217,7 @@ public class TelaCadProprietario extends JFrame {
 		panelInfoVeiculo.add(lblPlaca, gbc_lblPlaca);
 		
 		fieldPlaca = new JFormattedTextField();
+		fieldPlaca.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		GridBagConstraints gbc_fieldPlaca = new GridBagConstraints();
 		gbc_fieldPlaca.insets = new Insets(0, 0, 5, 0);
 		gbc_fieldPlaca.fill = GridBagConstraints.HORIZONTAL;

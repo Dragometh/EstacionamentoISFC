@@ -17,7 +17,7 @@ public class ControllerVerModel {
 		int idCount = 0;
 		
 		if (card.equals("VerCarro")) {
-			String col[] = {"ID", "Proprietário", "Placa"};
+			String col[] = {"ID", "Proprietï¿½rio", "Placa"};
 			java.util.ArrayList<Model.Carro> carroList = Service.ServiceCarros.Retrieve();
 			
 			for (int i = 0; i < col.length; i++) {
@@ -34,6 +34,13 @@ public class ControllerVerModel {
 			}
 			
 			tela.getTableCarro().setModel(tableModel);
+		}
+	}
+	
+	private void loadSelected(String card) {
+		if (card.equals("VerCarro")) {
+			tela.getLblIdValue().setText(String.valueOf(tela.getTableCarro().getSelectedRow()));
+			// tela.getLblDonoStr().setText();
 		}
 	}
 }
