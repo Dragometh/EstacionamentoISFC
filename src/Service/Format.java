@@ -4,7 +4,7 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import javax.swing.JFormattedTextField;
 
-//Classe que contï¿½m logica para formataï¿½ï¿½o de campos numï¿½ricos e outros campos de input.
+//Classe que contém lógica para formatação de campos numéricos e outros campos de input.
 public class Format {
 	public static void setFormatoCpf(JFormattedTextField field) {
 		MaskFormatter formatador;
@@ -37,7 +37,7 @@ public class Format {
 			
 			field.setFormatterFactory(formatadorFactory);
 		} catch (Exception e) {
-			System.err.println("Erro na formataï¿½ï¿½o do JFormattedTextField " + field.getName());
+			System.err.println("Erro na formata\u00E7\u00E3o do JFormattedTextField " + field.getName());
 			e.printStackTrace();
 		}
 	}
@@ -55,7 +55,7 @@ public class Format {
 			
 			field.setFormatterFactory(formatadorFactory);
 		} catch (Exception e) {
-			System.err.println("Erro na formataï¿½ï¿½o do JFormattedTextField " + field.getName());
+			System.err.println("Erro na formata\u00E7\u00E3o do JFormattedTextField " + field.getName());
 			e.printStackTrace();
 		}
 	}
@@ -72,7 +72,7 @@ public class Format {
 			
 			field.setFormatterFactory(formatadorFactory);
 		} catch (Exception e) {
-			System.err.println("Erro na formataï¿½ï¿½o do JFormattedTextField " + field.getName());
+			System.err.println("Erro na formata\u00E7\u00E3o do JFormattedTextField " + field.getName());
 			e.printStackTrace();
 		}
 	}

@@ -5,16 +5,16 @@ public class Carro implements java.io.Serializable{
 	private String placa;
     private String cor;
     private Versao versao;
-    private Proprietario dono;
+    private Proprietario proprietario;
     
     // Construtores
     public Carro() {super();}
     
-    public Carro(String placa, String cor, Versao versao, Proprietario dono) {
+    public Carro(String placa, String cor, Versao versao, Proprietario proprietario) {
     	this.placa = placa;
         this.cor = cor;
         this.versao = versao;
-        this.dono = dono;
+        this.proprietario = proprietario;
     }
 
     // Getters & Setters   
@@ -42,11 +42,11 @@ public class Carro implements java.io.Serializable{
         this.versao = versao;
     }
 
-	public Proprietario getDono() {
-		return dono;
+	public Proprietario getProprietario() {
+		return proprietario;
 	}
 
-	public void setDono(Proprietario dono) {
-		this.dono = dono;
+	public void setProprietario(Proprietario proprietario) {
+		this.proprietario = proprietario;
 	}
 }

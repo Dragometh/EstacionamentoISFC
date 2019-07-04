@@ -3,25 +3,25 @@ import java.util.ArrayList;
 
 public class Marca implements java.io.Serializable{
 	// Atributos
-	private String fabricante; // ou nome (da marca)
+	private String nome; // ou nome (da marca)
     private ArrayList<Modelo> listaModelos;
 	
     // Construtores
     public Marca() {super();}
     
-    public Marca(String fabricante, ArrayList<Modelo> listaModelos) {
+    public Marca(String nome, ArrayList<Modelo> listaModelos) {
 		super();
-		this.fabricante = fabricante;
+		this.nome = nome;
 		this.listaModelos = listaModelos;
 	}
 
     // Getters & Setters
-	public String getFabricante() {
-		return fabricante;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setFabricante(String fabricante) {
-		this.fabricante = fabricante;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public ArrayList<Modelo> getListaModelos() {
@@ -34,6 +34,6 @@ public class Marca implements java.io.Serializable{
 	
 	@Override
 	public String toString() {
-		return fabricante;
+		return nome;
 	}
 }

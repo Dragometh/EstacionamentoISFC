@@ -21,4 +21,8 @@ public class Proprietario extends Pessoa implements java.io.Serializable{
 		this.veiculo = veiculo;
 	}
 	
+	@Override
+	public String toString() {
+		return this.getNome();
+	}
 }

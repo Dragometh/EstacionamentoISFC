@@ -33,7 +33,7 @@ public class ControllerCadUser implements ActionListener{
 		boolean senhasValidas = false;
 		boolean camposEmBranco = false;
 		
-		// Detecï¿½ï¿½o de campos em branco
+		// Detecção de campos em branco
 		switch(0) {
 			case 0:
 				if (!tela.getUserField().getText().isEmpty()) {
@@ -128,7 +128,7 @@ public class ControllerCadUser implements ActionListener{
 				tela.getConfirmPassField().setText("");
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Há campos em branco!");
+			JOptionPane.showMessageDialog(null, "H\u00E1 campos em branco!");
 		}
 	}
 	

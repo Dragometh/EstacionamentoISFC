@@ -2,6 +2,14 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+import javax.swing.DefaultComboBoxModel;
+
+import Model.Log;
+import Model.Proprietario;
+import View.TelaVerModel;
 
 public class ControllerMenuPrinc implements ActionListener {
 	private View.TelaMenuPrinc tela;
@@ -21,10 +29,50 @@ public class ControllerMenuPrinc implements ActionListener {
 		}
 		tela.getBtnRegistrarEntrada().addActionListener(this);
 		tela.getBtnRegistrarSaida().addActionListener(this);
+		tela.getBtnZerarEntradas().addActionListener(this);
+		
+		loadTable();
 	}
 	
 	private javax.swing.JMenuItem menuBarHandler(int menu, int item) {
 		return tela.getJMenuBar().getMenu(menu).getItem(item);
+	}
+	
+	private void loadTable() {
+		javax.swing.table.DefaultTableModel tableModel = new javax.swing.table.DefaultTableModel() {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		
+		String col[] = {"Propriet\u00E1rio", "Placa", "Hor\u00E1rio de entrada"};
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		
+		for (int i = 0; i < col.length; i++) {
+			tableModel.addColumn(col[i]);
+		}
+		
+		ArrayList<Log> list = Service.ServiceLog.Retrieve();
+		ArrayList<Log> entradaList = new ArrayList<Log>();
+		
+		for (Log l: list) {
+			if (l.getTipo().equals("Entrada")) {
+				entradaList.add(l);
+			}
+		}
+		
+		for (Log l: entradaList) {
+			String dono = l.getCarro().getProprietario().getNome();
+			String placa = l.getCarro().getPlaca();
+			String tempo = l.getTempo().format(formatter);
+			
+			Object[] dados = {dono, placa, tempo};
+			System.out.println (dados.toString());
+			tableModel.addRow(dados);
+		}
+		
+		tela.getLogTable().setModel(tableModel);
 	}
 	
 	@Override
@@ -36,16 +84,13 @@ public class ControllerMenuPrinc implements ActionListener {
 		 * j = 1 = mntn(Ver/Registrar)Marcas
 		 * j = 2 = mntn(Ver/Registrar)Usuarios
 		 * i = 0; j = 3 = mntnVerCarros
-		 */
-		
-		
-		
+		 */	
 		if (e.getSource() == menuBarHandler(0,0)) { 
-			//mntnVerProprietarios
+			View.TelaVerModel verProprietarios = new View.TelaVerModel("VerProprietario");
 		} else if (e.getSource() == menuBarHandler(0,1)) {
-			//mntnVerMarcas
+			View.TelaVerModel verMarca = new View.TelaVerModel("VerMarca");
 		} else if (e.getSource() == menuBarHandler(0,2)) {
-			//mntnVerUsuarios
+			View.TelaVerModel verUser = new View.TelaVerModel("VerUsuario");
 		}else if (e.getSource() == menuBarHandler(0,3)) {
 			View.TelaVerModel verCarro = new View.TelaVerModel("VerCarro");
 		} else if (e.getSource() == menuBarHandler(1,0)) {
@@ -55,9 +100,12 @@ public class ControllerMenuPrinc implements ActionListener {
 		} else if (e.getSource() == menuBarHandler(1,2)) {
 			View.TelaCadUser cadUser = new View.TelaCadUser();
 		} else if (e.getSource() == tela.getBtnRegistrarEntrada()) {
-			//Registro de Entradas
+			View.TelaRegEntrada dialogRegistrarEntrada = new View.TelaRegEntrada();
+			loadTable();
 		} else if (e.getSource() == tela.getBtnRegistrarSaida()) {
 			//Registro de Saidas
+		} else if (e.getSource() == tela.getBtnZerarEntradas()) {
+			Service.ServiceLog.Clear();
 		}
 		
 	}

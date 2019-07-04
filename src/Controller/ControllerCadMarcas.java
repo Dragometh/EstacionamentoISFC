@@ -20,7 +20,7 @@ public class ControllerCadMarcas implements ActionListener{
 		super();
 		this.tela = tela;
 		tela.setVisible(true);
-		tela.setTitle("Cadastro de Modelos, Marcas e Versoes");
+		tela.setTitle("Cadastro de Modelos, Marcas e Vers\u00F5es");
 		
 		tela.getBtnMarcasRegistrar().addActionListener(this);
 		tela.getBtnModelosRegistrar().addActionListener(this);
@@ -39,23 +39,24 @@ public class ControllerCadMarcas implements ActionListener{
 				boolean marcaNomeInvalido = false;
 				Marca marca = new Marca();
 				
-				marca.setFabricante(tela.getMarcasNomeField().getText());
+				marca.setNome(tela.getMarcasNomeField().getText());
 				marca.setListaModelos(new ArrayList<Modelo>());
 				
 				for (Marca m : Service.ServiceMarcas.Retrieve()) {
-					if (m.getFabricante().equals(marca.getFabricante())) {
+					if (m.getNome().equals(marca.getNome())) {
 						marcaNomeInvalido = true;
 					}
 				}
 				
 				if (!marcaNomeInvalido) {
 					Service.ServiceMarcas.Create(marca);
+					tela.getMarcasNomeField().setText("");
 				} else {
-					JOptionPane.showMessageDialog(null, "Marca já está registrada!");
+					JOptionPane.showMessageDialog(null, "Marca j\u00E1 est\u00E1 registrada!");
 				}
 				
 			} else {
-				JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
+				JOptionPane.showMessageDialog(null, "H\u00E1 campos em branco/n\u00E3o selecionados!");
 			}
 			
 			
@@ -86,18 +87,20 @@ public class ControllerCadMarcas implements ActionListener{
 					Marca fabric = (Marca) tela.getModelosMarcaCBox().getSelectedItem();
 					fabric.getListaModelos().add(modelo);
 					for (Marca m : Service.ServiceMarcas.Retrieve()) {
-						if (m.getFabricante().equals(fabric.getFabricante())) {
-							System.out.println("Marca m: " + m.getFabricante() + "\nMarca fabric: " + fabric.getFabricante());
+						if (m.getNome().equals(fabric.getNome())) {
+							System.out.println("Marca m: " + m.getNome() + "\nMarca fabric: " + fabric.getNome());
 							Service.ServiceMarcas.Update(tela.getModelosMarcaCBox().getSelectedIndex() - 1, fabric); // -1 devido ao index = 0("Selecionar X") adicionado aos ComboBoxes.
 							break;
 						}
 					}
 					Service.ServiceModelos.Create(modelo);
+					tela.getModeloNomeField().setText("");
+					tela.getModelosMarcaCBox().setSelectedIndex(0);
 				} else {
-					JOptionPane.showMessageDialog(null, "Modelo já está registrado dentro dessa marca!");
+					JOptionPane.showMessageDialog(null, "Modelo j\u00E1 est\u00E1 registrado dentro dessa marca!");
 				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
+				JOptionPane.showMessageDialog(null, "H\u00E1 campos em branco/n\u00E3o selecionados!");
 			}
 			
 			break;
@@ -145,12 +148,17 @@ public class ControllerCadMarcas implements ActionListener{
 						}
 					}
 					Service.ServiceVersoes.Create(versao);
+					tela.getVersaoNomeField().setText("");
+					tela.getVersoesMarcaCBox().setSelectedIndex(0);
+					tela.getVersoesModeloCBox().setSelectedIndex(0);
+					tela.getVersoesCarroceriaCBox().setSelectedIndex(0);
+					tela.getVersoesClasseCBox().setSelectedIndex(0);
 				} else {
-					JOptionPane.showMessageDialog(null, "Essa versao já está registrada dentro desse modelo!");
+					JOptionPane.showMessageDialog(null, "Essa versao j\u00E1 est\u00E1 registrada dentro desse modelo!");
 				} 
 				break;
 			} else {
-				JOptionPane.showMessageDialog(null, "Há campos em branco/não selecionados!");
+				JOptionPane.showMessageDialog(null, "H\u00E1 campos em branco/n\u00E3o selecionados!");
 			}
 		}
 	}
